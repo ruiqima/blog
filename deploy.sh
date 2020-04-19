@@ -18,7 +18,7 @@ git add .
 git commit -m "$msg"
 
 # Push source and build repos.
-git push -f origin master
+git push origin master
 
 # Build the project.
 hugo --gc --minify # if using a theme, replace with `hugo -t <YOURTHEME>`
