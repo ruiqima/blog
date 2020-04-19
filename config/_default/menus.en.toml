@@ -4,17 +4,17 @@
 #   The weight parameter defines the order that the links will appear in.
 
 [[main]]
-  name = "置顶文章"
+  name = "Featured Posts"
   url = "#featured"
   weight = 10
 
 [[main]]
-  name = "最近文章"
+  name = "Recent Posts"
   url = "#posts"
   weight = 20
 
 [[main]]
-  name = "关于"
+  name = "About"
   url = "#about"
   weight = 40
 

@@ -1,0 +1,12 @@
+.avatar {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+@media (max-width: 767.98px) {
+  .wg-about .avatar {
+    width: 200px;
+    height: 200px;
+  }
+}
