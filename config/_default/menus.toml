@@ -9,7 +9,7 @@
   weight = 10
 
 [[main]]
-  name = "最近文章"
+  name = "最新发布"
   url = "#posts"
   weight = 20
 
