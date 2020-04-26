@@ -4,7 +4,7 @@ subtitle: ""
 summary: ""
 authors: []
 tags: []
-categories: []
+categories: ["JavaScript进阶之路"]
 date: 2020-04-25T17:06:58+08:00
 lastmod: 2020-04-25T17:06:58+08:00
 featured: false
@@ -280,7 +280,7 @@ function Person(name, age, job) {
 
     if (typeof this.sayName != "function") {
         // !important
-        Person2.prototype.sayName = function () {
+        Person.prototype.sayName = function () {
             console.log(this.name);
         };
     }

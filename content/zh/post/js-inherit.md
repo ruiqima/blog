@@ -4,7 +4,7 @@ subtitle: ""
 summary: ""
 authors: []
 tags: []
-categories: []
+categories: ["JavaScript进阶之路"]
 date: 2020-04-25T21:22:22+08:00
 lastmod: 2020-04-25T21:22:22+08:00
 featured: false
