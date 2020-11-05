@@ -1,4 +1,4 @@
-# Some Questions and Answers
+# Drawer, Transparent AppBar, Search, Navigator, Route... And Other Questions&Answers
 
 ## Q1: Change Drawer Icon  
 
@@ -300,3 +300,46 @@ class RecipeSearch extends SearchDelegate<String> {
 }
 
 ```
+
+## Q5: Vertical Viewport Was Given Unbounded Height  
+
+[Solution](https://stackoverflow.com/questions/50252569/vertical-viewport-was-given-unbounded-height/54587532)
+
+## Q6: Navigator & Route  
+
+### Introduction  
+
+- *push* / *pop*, *maybepop* / *canpop*
+- *pushReplacementNamed* / *popAndPushNamed*  
+- *pushNamedAndRemoveUntil* / *popUntil*
+- how to send data and retrieve data?
+
+See [Flutter: Push, Pop, Push](https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31).
+
+### Steps to Create `MyRoute` and Navigate  
+
+[Clean Navigation in Flutter Using Generated Routes](https://medium.com/flutter-community/clean-navigation-in-flutter-using-generated-routes-891bd6e000df) gives a clear steps to create `MyRoute`. (Change the classname in this tutorial from `Route` to `MyRoute` since it will triggle an error -- maybe because `Route` has been already defined in other dart packages)
+
+You can also use
+
+```dart
+Navigator.popUntil(
+    context,
+    ModalRoute.withName(
+        Navigator.defaultRouteName,
+    ),
+),
+```
+
+to reach the root of the stack.
+
+My reference: [How to use popUntil properly to reach the root of the stack?](https://stackoverflow.com/questions/56238574/how-to-use-popuntil-properly-to-reach-the-root-of-the-stack)  
+
+If after your navigation it returns a black screen, make sure to just use Scaffold as a top widget instead of MaterialApp in all nested screens.  
+
+My reference: [Flutter Navigator.pop(context) returning a black screen](https://stackoverflow.com/questions/53723294/flutter-navigator-popcontext-returning-a-black-screen)  
+
+## Q7 Click the blank space to cancel the TextField focus
+
+See [笔记-Flutter 之点击空白处取消TextField焦点](https://blog.csdn.net/weixin_34247155/article/details/88002081)  
+
