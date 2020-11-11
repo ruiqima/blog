@@ -5,8 +5,8 @@ summary: ""
 authors: [mrq]
 tags: [Flutter FutureBuilder]
 categories: ["Flutter演练"]
-date: 2020-9-20T21:22:22+08:00
-lastmod: 2020-9-20T21:22:22+08:00
+date: 2020-09-20T21:22:22+08:00
+lastmod: 2020-09-20T21:22:22+08:00
 featured: false
 draft: false
 
