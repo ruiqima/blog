@@ -18,7 +18,23 @@ image:
 projects: []
 ---
 
-[toc]
+<!-- TOC -->
+
+- [Q1: Change Drawer Icon](#q1-change-drawer-icon)
+- [Q2: Detect behaviors on any Widgets](#q2-detect-behaviors-on-any-widgets)
+- [Q3: Limit the number of lines and add ellipsis](#q3-limit-the-number-of-lines-and-add-ellipsis)
+- [Q3: Create Transparent Appbar & "Floating" TextField](#q3-create-transparent-appbar--floating-textfield)
+    - [1. Add a TextField Widget to *AppBar*'s *title* property](#1-add-a-textfield-widget-to-appbars-title-property)
+    - [2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible](#2-make-a-translucent-appbar-and-let-the-body-widget-can-go-behind-the-appbar-and-be-visible)
+    - [Style the TextField](#style-the-textfield)
+- [Q4: Create a Search Bar Using *ShowSearch()*](#q4-create-a-search-bar-using-showsearch)
+- [Q5: Vertical Viewport Was Given Unbounded Height](#q5-vertical-viewport-was-given-unbounded-height)
+- [Q6: Navigator & Route](#q6-navigator--route)
+    - [Introduction](#introduction)
+    - [Steps to Create `MyRoute` and Navigate](#steps-to-create-myroute-and-navigate)
+- [Q7 Click the blank space to cancel the TextField focus](#q7-click-the-blank-space-to-cancel-the-textfield-focus)
+
+<!-- /TOC -->
 
 ## Q1: Change Drawer Icon  
 

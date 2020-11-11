@@ -18,7 +18,15 @@ image:
 projects: []
 ---
 
-[toc]
+<!-- TOC -->
+
+- [第一步：自动打开游戏](#第一步自动打开游戏)
+    - [问题：Appium打开app会清空用户登录信息](#问题appium打开app会清空用户登录信息)
+        - [解决路径](#解决路径)
+        - [Appium Desired Capabilities](#appium-desired-capabilities)
+- [在ScreenShot中利用reference image识别element](#在screenshot中利用reference-image识别element)
+
+<!-- /TOC -->
 
 ## 第一步：自动打开游戏
 

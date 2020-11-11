@@ -18,7 +18,19 @@ image:
 projects: []
 ---
 
-[toc]
+<!-- TOC -->
+
+- [数据属性](#数据属性)
+- [访问器属性](#访问器属性)
+- [读取属性的特性](#读取属性的特性)
+- [判断是否包含某属性和 in 操作符](#判断是否包含某属性和-in-操作符)
+- [获取属性](#获取属性)
+    - [for-in——所有枚举属性](#for-in所有枚举属性)
+    - [Object.keys()——可枚举实例属性的字符串数组](#objectkeys可枚举实例属性的字符串数组)
+    - [Object.getOwnPropertyNames()——所有实例属性的字符串数组](#objectgetownpropertynames所有实例属性的字符串数组)
+    - [注意 console.log()](#注意-consolelog)
+
+<!-- /TOC -->
 
 ## 数据属性
 

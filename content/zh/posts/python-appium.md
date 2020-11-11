@@ -18,7 +18,10 @@ image:
 projects: []
 ---
 
-[toc]
+<!-- TOC -->
+
+
+<!-- /TOC -->
 
 **首先完成安装的准备工作**  
 [Getting Started with Python in VS Code](https://code.visualstudio.com/docs/python/python-tutorial)  
