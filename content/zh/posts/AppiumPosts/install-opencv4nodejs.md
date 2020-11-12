@@ -2,8 +2,8 @@
 title = "安装Opencv4nodejs的坑"
 description = ""
 toc = true
-authors = [mrq]
-tags = [Appium, opencv4nodejs, Installation]
+authors = ["mrq"]
+tags = ["Appium", "opencv4nodejs", "Installation"]
 categories = ["脚本开发"]
 series = []
 date =  "2020-11-12T15:46:05+08:00"
@@ -54,7 +54,7 @@ draft = false
 
 安装`opencv4nodejs`的官方文档[How to install](https://www.npmjs.com/package/opencv4nodejs#how-to-install).
 
-**首先运行`npm i -g opencv4nodejs`** 
+**首先运行`npm i -g opencv4nodejs`**  
 在`installing CMake...`的时候，报错`Visual Studio 15 2017 could not find any instance of Visual Studio.`  
 
 本来想的是，把它要找的那个从VS2017变成VS2019，尝试了各种对VS2019的设置、对环境变量的设置、对`mscv`的设置等等，都未解决。  
@@ -78,20 +78,21 @@ draft = false
 
 于是，接下来开始参考官方文档的Installing OpenCV Manually部分。
 
-我们选择了自行设置OpenCV，因此需要设置一个环境变量以阻止自动构建脚本运行：
-**运行`set OPENCV4NODEJS_DISABLE_AUTOBUILD=1`——设置临时环境变量**  
+我们选择了自行设置OpenCV，因此需要设置一个环境变量以阻止自动构建脚本运行： 
+ 
+- **运行`set OPENCV4NODEJS_DISABLE_AUTOBUILD=1`——设置临时环境变量**  
 注意，这条命令仅在当前命令行窗口有效，因此不要关闭这个cmd窗口，接下来有关的步骤仍在这个窗口中进行。
-**运行`choco install OpenCV -y -version 4.5.0`——安装OpenCV**
-找不到`choco`命令的话安装一个就行了。4.5.0是当前的OpenCV最新版本，你可以选择自己需要的版本。
-**设置系统环境变量**
+- **运行`choco install OpenCV -y -version 4.5.0`——安装OpenCV**  
+找不到`choco`命令的话安装一个就行了。4.5.0是当前的OpenCV最新版本，你可以选择自己需要的版本。  
+- **设置系统环境变量**  
 在通过自己的OpenCV安装来安装opencv4nodejs之前，需要设置以下环境变量：
 
-- `OPENCV_BIN_DIR`: `C:\tools\opencv\build\x64\vc15\bin`
-- `OPENCV_INCLUDE_DIR`: `C:\tools\opencv\build\include`
-- `OPENCV_LIB_DIR`: `C:\tools\opencv\build\x64\vc15\lib`
-- `Path`中新建: `%OPENCV_BIN_DIR%`
+    - `OPENCV_BIN_DIR`: `C:\tools\opencv\build\x64\vc15\bin`
+    - `OPENCV_INCLUDE_DIR`: `C:\tools\opencv\build\include`
+    - `OPENCV_LIB_DIR`: `C:\tools\opencv\build\x64\vc15\lib`
+    - `Path`中新建: `%OPENCV_BIN_DIR%`
 
-配置第一个环境变量的时候踩了个大坑，在最后才发现，感谢[Issue: #84](https://github.com/justadudewhohacks/opencv4nodejs/issues/84)的回答者们！！！  
+配置第一个环境变量的时候踩了个大坑，在最后才发现，感谢[Issue: #84](https://github.com/justadudewhohacks/opencv4nodejs/issues/84)的回答者们。  
 
 最后记得**重启命令行**。  
 
