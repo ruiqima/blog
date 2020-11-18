@@ -36,7 +36,8 @@ draft = false
 ## 太长不看只要正确步骤
 
 1. 卸载VS2019，在[MicroSoft Visual Studio Subscriptions](https://my.visualstudio.com/Downloads?PId=6542)安装VS2017，选择正确的工作负载（“使用C++的桌面开发”、“Visual Studio扩展开发”）和单个组件（“适用于Windows的Git”、“用域CMake和Linux的Visual C++工具”、“用于CMake的Visual C++工具”、“适用于桌面的VC++ 2015.3 v14.00（v140）工具集”）
-2. 手动安装OpendCV
+2. 手动安装cmake，运行`pip install cmake`  
+3. 手动安装OpendCV
     - 运行`set OPENCV4NODEJS_DISABLE_AUTOBUILD=1`
     - 在这个命令行接着运行`choco install OpenCV -y -version 4.5.0`
     - 设置系统环境变量
@@ -45,24 +46,49 @@ draft = false
         - `OPENCV_LIB_DIR`:`C:\tools\opencv\build\x64\vc15\lib`
         - `Path`中新建: `%OPENCV_BIN_DIR%`
     - 重启命令行
-3. 更新`npm`和`node`
+4. 更新`npm`和`node`
     - 更新`npm`：`npm install -g npm`
     - 更新`node`：`where node`查看之前的版本安装地址。在[node官网](https://nodejs.org/en/)下载最新版的`.msi`安装包，覆盖安装之前的版本。
-4. 运行`npm i -g opencv4nodejs`
+5. 运行`npm i -g opencv4nodejs`
 
 ## 走过的路&踩过的坑
 
-安装`opencv4nodejs`的官方文档[How to install](https://www.npmjs.com/package/opencv4nodejs#how-to-install).
+运行Appium官方文档[Finding and Interacting with Image Elements](http://appium.io/docs/en/advanced-concepts/image-elements/)给的sample code：
 
-**首先运行`npm i -g opencv4nodejs`**  
-在`installing CMake...`的时候，报错`Visual Studio 15 2017 could not find any instance of Visual Studio.`  
+```python
+driver.update_settings({"getMatchedImageResult": True})
+el = driver.find_element_by_image('C:/Users/30544/Desktop/test_cross.png')
+el.get_attribute('visual') 
+```
 
-本来想的是，把它要找的那个从VS2017变成VS2019，尝试了各种对VS2019的设置、对环境变量的设置、对`mscv`的设置等等，都未解决。  
+报错：`selenium.common.exceptions.WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: 'opencv4nodejs' module is required to use OpenCV features. Please install it first ('npm i -g opencv4nodejs') and restart Appium.`
+
+其中给了一个opencv4nodejs的[how to install](https://github.com/justadudewhohacks/opencv4nodejs#how-to-install)的链接。
+> **Important Note!**  
+> opencv4nodejs不能安装在含有空格的路径下。比如，安装在"C:\Program Files\some_dir"下时会报错“error C1083 ...”。在Windows环境下安装时，如果没有Visual Studio，还需要Windows Build Tools来编译OpenCV和opencv4nodejs。  
+
+运行`npm install --save opencv4nodejs`，报错：缺少cmake。
+运行`npm install --global windows-build-tools`安装编译OpenCV和opencv4nodejs的Windows Build Tools。（待确认，有VS2017的话需要这一步吗）  
+**运行`pip install cmake`之后**，重新尝试运行第一条命令`npm install --save opencv4nodejs`，报错的地方通过了，但提示新错误：  
+
+```
+CMake Error at CMakeLists.txt(project):
+  Generator
+
+    Visual Studio 15 2017 Win64
+
+  could not find any instance of Visual Studio.
+```
+
+本来想的是，把它要找的那个从VS2017变成VS2019，尝试了各种对VS2019的设置、对环境变量的设置、对`mscv`的设置等等，都未解决。使用这个[解决方法](https://www.pianshen.com/article/22701428686/)解决了Visual Studio下载速度很慢的问题。  
+
 部分未能解决的方法：
 
-- [CMake: Visual Studio 15 2017 could not find any instance of Visual Studio](https://stackoverflow.com/questions/51668676/cmake-visual-studio-15-2017-could-not-find-any-instance-of-visual-studio)
+- [CMake: Visual Studio 15 2017 could not find any instance of Visual Studio](https://stackoverflow.com/questions/51668676/cmake-visual-studio-15-2017-could-not-find-any-instance-of-visual-studio)更改了VS160xxxx环境变量的值——未解决
 - [could not find any instance of Visual Studio. (solved) #3472](https://github.com/ycm-core/YouCompleteMe/issues/3472)
-- [CMake problem: could not find any instance of Visual Studio](https://stackoverflow.com/questions/60068168/cmake-problem-could-not-find-any-instance-of-visual-studio)
+- [CMake problem: could not find any instance of Visual Studio](https://stackoverflow.com/questions/60068168/cmake-problem-could-not-find-any-instance-of-visual-studio)  
+- 根据[这篇博客](https://www.cnblogs.com/qq2806933146xiaobai/p/13359446.html)对Visual Studio进行了修改——未解决
+
 
 **解决方法：卸载VS2019， 安装VS2017**  
 那干脆直接把VS2019换成VS2017不就好了！它要什么给它什么！
