@@ -1,12 +1,12 @@
 ---
-title: "游戏脚本初探索 Android Python Appium"
+title: "游戏脚本-自动生产 Android Python Appium"
 subtitle: ""
 summary: ""
 authors: [mrq]
 tags: [Android, Python, Appium]
 categories: ["脚本开发"]
 date: 2020-11-07T21:22:22+08:00
-lastmod: 2020-11-11T21:22:22+08:00
+lastmod: 2020-11-18T21:22:22+08:00
 featured: false
 draft: false
 
