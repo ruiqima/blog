@@ -1,0 +1,225 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>JavaScript继承方法详解 | MLC NOTES</title><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null;this.rel='stylesheet'"><link rel=preload href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css as=style onload="this.onload=null;this.rel='stylesheet'"><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="new 操作的实现原理 使用原型链进行继承 instanceof 操作符、isPrototypeOf() 方法 问题 借用构造函数 问题 组合继承 不足：会调用两次超类型构造函数 原型式继承 寄生"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"MLC NOTES","item":"/zh/"},{"@type":"ListItem","position":3,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":4,"name":"JavaScript继承方法详解","item":"/zh/posts/frontendposts/js-inherit/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/frontendposts/js-inherit/"},"headline":"JavaScript继承方法详解 | MLC NOTES","datePublished":"2020-04-25T21:22:22+08:00","dateModified":"2020-04-25T21:22:22+08:00","wordCount":3736,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"new 操作的实现原理 使用原型链进行继承 instanceof 操作符、isPrototypeOf() 方法 问题 借用构造函数 问题 组合继承 不足：会调用两次超类型构造函数 原型式继承 寄生"}</script><meta property="og:title" content="JavaScript继承方法详解 | MLC NOTES"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/frontendposts/js-inherit/"><meta property="og:description" content="new 操作的实现原理 使用原型链进行继承 instanceof 操作符、isPrototypeOf() 方法 问题 借用构造函数 问题 组合继承 不足：会调用两次超类型构造函数 原型式继承 寄生"><meta property="og:locale" content="zh"><meta property="og:site_name" content="MLC NOTES"><meta property="article:published_time" content="2020-04-25T21:22:22+08:00"><meta property="article:modified_time" content="2020-04-25T21:22:22+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Javascript"><meta property="article:tag" content="Inherit"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">MLC NOTES</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=/zh/posts/frontendposts/js-inherit/><a href=/zh/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">JavaScript继承方法详解</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>2020-04-25</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>8分钟阅读时长</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=/zh/categories/javascript%E8%BF%9B%E9%98%B6%E4%B9%8B%E8%B7%AF/ class=hover:text-eureka>JavaScript进阶之路</a></div></div><div class=content><ul><li><a href=#new-%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86>new 操作的实现原理</a></li><li><a href=#%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%9E%8B%E9%93%BE%E8%BF%9B%E8%A1%8C%E7%BB%A7%E6%89%BF>使用原型链进行继承</a><ul><li><a href=#instanceof-%E6%93%8D%E4%BD%9C%E7%AC%A6isprototypeof-%E6%96%B9%E6%B3%95>instanceof 操作符、isPrototypeOf() 方法</a></li><li><a href=#%E9%97%AE%E9%A2%98>问题</a></li></ul></li><li><a href=#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0>借用构造函数</a><ul><li><a href=#%E9%97%AE%E9%A2%98-1>问题</a></li></ul></li><li><a href=#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF>组合继承</a><ul><li><a href=#%E4%B8%8D%E8%B6%B3%E4%BC%9A%E8%B0%83%E7%94%A8%E4%B8%A4%E6%AC%A1%E8%B6%85%E7%B1%BB%E5%9E%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0>不足：会调用两次超类型构造函数</a></li></ul></li><li><a href=#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF>原型式继承</a></li><li><a href=#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF>寄生式继承</a></li><li><a href=#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF>寄生组合式继承</a></li></ul><h2 id=new-操作的实现原理>new 操作的实现原理</h2><p>以 SuperType 构造函数和 obj 实例为例。</p><p>首先明确 new 操作符的预期结果：</p><ul><li><code>obj</code> 具有 <code>SuperType</code> 所有的实例属性、方法和原型属性、方法</li><li><code>obj.constructor === SuperType</code>, 返回 true</li><li><code>obj.__proto__ == SuperType.prototype</code>, 返回 true</li><li><code>obj</code> 上的原型方法与 <code>SuperType</code> 原型上的同一方法在内存上应该一致</li><li><code>new</code> 操作最后返回了一个对象</li><li><code>obj instanceof SuperType</code>, 返回 true</li></ul><p>先给出 SuperType 构造函数的定义：</p><pre><code class=language-javascript>function SuperType() {
+    this.prop = true;
+    this.func = function () {};
+}
+
+SuperType.prototype.protofunc = function () {};
+</code></pre><p>验证上述几个 new 操作符的预期结果是否正确：</p><pre><code class=language-javascript>var obj1 = new SuperType();
+
+console.log(obj1.constructor === SuperType); // true
+console.log(obj1.__proto__ == SuperType.prototype); // true
+console.log(obj1.protofunc === SuperType.prototype.protofunc); // true
+console.log(obj1 instanceof SuperType); // true
+</code></pre><p>返回结果都为 true，说明上述预期是正确的。</p><p>接下来，开始复现 new 操作符的实现过程。封装在函数<code>newinstance(Type)</code>中，其中，Type 为对象类型，即相当于<code>SuperType</code>。</p><pre><code class=language-javascript>function newinstance(Type) {
+    // 首先创建一个对象实例，该对象包括一个 __proto__ 属性，需要指向 Type.prototype
+    var o = {
+        __proto__: Type.prototype,
+    };
+
+    // 接着，对象实例 o 需要具有 Type 的所有实例属性和原型属性
+    // 即，在o对象实例上运行 Type 的构造函数，初始化 Type 的那些属性和方法
+    Type.apply(o);
+
+    // 最后，需要返回这个对象实例
+    return o;
+}
+</code></pre><p>对该复现进行验证，验证是否满足上述预期结果。</p><pre><code class=language-javascript>// 首先定义函数printAllProps()，用于输出所有可枚举的实例属性、原型属性
+// 不用console.log输出的原因见获得对象属性的方法的博文
+function printAllProps(obj) {
+    let array = [];
+    for (let prop in obj) {
+        array.push(prop);
+        // 如果要输出属性值，使用：
+        // array.push(prop + ':' + obj[prop])
+    }
+    console.log(array);
+}
+</code></pre><pre><code class=language-javascript>var obj = newinstance(SuperType);
+printAllProps(obj);
+</code></pre><p>输出<code>['prop', 'func', 'protofunc']</code>，说明已经满足具有所有实例属性、原型属性的预期。</p><pre><code class=language-javascript>console.log(obj.constructor === SuperType); // true
+console.log(obj.__proto__ == SuperType.prototype); // true
+console.log(obj.protofunc === SuperType.prototype.protofunc); // true
+console.log(obj instanceof SuperType); // true
+</code></pre><p>全部输出<code>true</code>，说明这一步也验证正确。</p><p>至此，new 操作符的重现已经完成。</p><h2 id=使用原型链进行继承>使用原型链进行继承</h2><p>继承是通过创建<code>SuperType</code>的实例，并将该实例赋给<code>SubType.prototype</code>实现的。</p><p>本质是重写原型对象，用另一个类型的实例所代替。</p><pre><code class=language-javascript>function SuperType() {
+    this.prop = true;
+    this.func = function () {};
+}
+
+SuperType.prototype.protofunc = function () {};
+
+function SubType() {
+    this.subprop = true;
+    this.subfunc = function () {};
+}
+
+SubType.prototype = new SuperType(); // !important
+
+var subobj = new SubType();
+</code></pre><p>上述代码中，<code>SubType.prototype = new SuperType()</code> 给 SubType 换了一个新的原型，因为是直接重写的。<code>SubType.prototype</code>指向的是这个新<code>new</code>出来的对象。因此最终结果为，<code>subobj</code> 中有一个指向<code>SubType.prototype</code>的指针，<code>SubType.prototype</code>中有一个指向<code>SuperType.prototype</code>的指针。</p><p><strong>使用原型链实现继承时，在继承类型中，不能使用对象字面量创建原型方法或属性。</strong></p><p>例如，不能使用以下字面量添加新方法。本质问题是错误地将原型对象重写替换成了另一个对象字面量。</p><pre><code class=language-javascript>SubType.prototype = new SuperType();
+
+// 错误方法
+// SubType.prototype = {
+//     newfunc: function () {},
+// };
+
+// 正确方法
+SubType.prototype.newfunc = function () {};
+</code></pre><h3 id=instanceof-操作符isprototypeof-方法>instanceof 操作符、isPrototypeOf() 方法</h3><p><strong>所有引用类型都默认继承了 Object。</strong></p><p><code>instanceof</code></p><p>只要这个构造函数在实例的原型链中出现过，就返回 true。</p><pre><code class=language-javascript>console.log(subobj instanceof SubType); // true
+console.log(subobj instanceof SuperType); // true
+console.log(subobj instanceof Object); // true
+</code></pre><p><code>isPrototypeOf()</code></p><p>只要是在原型链中出现过的原型，都可以算作该原型链所派生的实例的原型，返回 true。</p><pre><code class=language-javascript>console.log(SubType.prototype.isPrototypeOf(subobj)); // true
+console.log(SuperType.prototype.isPrototypeOf(subobj)); // true
+console.log(Object.prototype.isPrototypeOf(subobj)); // true
+</code></pre><h3 id=问题>问题</h3><p>问题一：对于<strong>包含引用类型值</strong>的子类型原型，即超类型实例属性、原型属性中包含引用类型的时候，子类型对象公用这些引用类型内存，<strong>对引用类型值的更改会反映在所有对象上。</strong></p><p>问题二：创建子类型对象时，不能在不影响所有对象实例的情况下向超类型构造函数传递参数。</p><h2 id=借用构造函数>借用构造函数</h2><p>也称<strong>伪造对象继承</strong>或<strong>经典继承</strong>。</p><p>本质是，在子类型构造函数内部调用超类型构造函数，同时使用<code>call()</code>和<code>apply()</code>方法在新创建的子类型对象上执行构造函数。</p><p>可以解决使用原型链实现继承的问题一和问题二。</p><pre><code class=language-javascript>function SuperType(supername) {
+    this.name = supername;
+    this.arrays = [&quot;1&quot;, &quot;2&quot;];
+    this.func = function () {};
+}
+
+function SubType(subname, supername) {
+    SuperType.call(this, supername); // !important
+    // 为了确保SuperType构造函数不会重写子类型的属性
+    // 应先调用超类型构造函数，再进行子类型属性定义
+    this.subname = subname;
+}
+
+var subobj1 = new SubType(&quot;sub&quot;, &quot;super&quot;);
+
+subobj1.arrays.push(&quot;3&quot;);
+
+var subobj2 = new SubType(&quot;sub&quot;, &quot;super&quot;);
+var superobj = new SuperType(&quot;super&quot;);
+</code></pre><p>使用可以输出可枚举属性名、属性值的<code>printAllProps()</code>函数，验证对引用类型值的更改是否影响到了所有对象实例。</p><pre><code class=language-javascript>printAllProps(subobj1);
+// [ 'subname:sub', 'name:super', 'arrays:1,2,3', 'func:function () {}' ]
+printAllProps(subobj2);
+// [ 'subname:sub', 'name:super', 'arrays:1,2', 'func:function () {}' ]
+printAllProps(superobj);
+// [ 'name:super', 'arrays:1,2', 'func:function () {}']
+</code></pre><p>原因： 使用<code>call()</code>方法，即在新要创建的子类型对象上<strong>执行了<code>SuperType()</code>函数中定义的对象初始化代码</strong>，每个<code>SubType</code>类型实例都具有自己的<code>arrays</code>副本。</p><p>但这同时也带来了借用构造函数继承的问题。</p><h3 id=问题-1>问题</h3><ul><li>方法都在构造函数中定义，无法进行函数复用。</li></ul><pre><code class=language-javascript>console.log(subobj1.func === subobj2.func); // false
+</code></pre><ul><li>在超类型原型中定义的方法，对子类型是不可见的。</li></ul><p>如果给<code>SuperType</code>类型添加原型函数<code>protofunc()</code>如下：</p><pre><code class=language-javascript>SuperType.prototype.protofunc = function () {};
+</code></pre><p>在<code>SubType</code>对象实例<code>subobj1</code>、<code>subobj2</code>中将不会包含这个超类型的原型方法，<code>printAllProps()</code>结果将如下：</p><pre><code class=language-javascript>printAllProps(subobj1); // [ 'subname:sub', 'name:super', 'arrays:1,2,3', 'func:function () {}' ]
+printAllProps(subobj2); // [ 'subname:sub', 'name:super', 'arrays:1,2', 'func:function () {}' ]
+printAllProps(superobj); // [ 'name:super', 'arrays:1,2', 'func:function () {}', 'protofunc:function () {}']
+</code></pre><p>可以看到，只有<code>superobj</code>中包含了该方法。原因：注意上一段中的<strong>加粗字体：执行了<code>SuperType()</code>函数中定义的对象初始化代码</strong>——原型上的属性方法不是定义在<code>SuperType()</code>构造函数中的，构造函数中仅包含实例属性方法,因此子类型<code>SubType</code>的实例中将只会初始化这些实例属性方法。</p><p>导致的结果是，所有类型都只能使用构造函数模式。因此借用构造函数很少单独使用。</p><h2 id=组合继承>组合继承</h2><p>也称<strong>伪经典继承</strong>, 将原型链和借用构造函数组合在一起，融合了二者的优点：</p><ul><li>使用借用构造函数实现对实例属性的继承</li><li>使用原型链实现对原型属性的继承</li></ul><pre><code class=language-javascript>// 定义超类型的实例属性方法
+function SuperType(supername) {
+    this.name = supername;
+    this.arrays = [&quot;1&quot;, &quot;2&quot;];
+}
+
+// 定义超类型的原型属性方法
+SuperType.prototype.protofunc = function () {};
+SuperType.prototype.protonames = [&quot;a&quot;, &quot;b&quot;];
+
+// 子类型开始继承
+// 1. 使用借用构造函数实现对实例属性的继承
+function SubType(subname, supername) {
+    SuperType.call(this, supername); // !important
+
+    this.subname = subname;
+}
+
+// 2. 使用原型链实现对原型属性的继承
+SubType.prototype = new SuperType(); // !important
+SubType.prototype.constructor = SubType; // !important
+
+// 创建子类型对象实例
+var subobj1 = new SubType(&quot;sub&quot;, &quot;super&quot;);
+var subobj2 = new SubType(&quot;sub&quot;, &quot;super&quot;);
+</code></pre><p>虽然组合继承目前被使用得很多，但仍有不足。</p><h3 id=不足会调用两次超类型构造函数>不足：会调用两次超类型构造函数</h3><p>无论在什么情况下，使用组合继承都会调用两次超类型构造函数：第一次，在重写<code>SubType</code>的原型时；第二次，在子类型<code>SubType</code>构造函数内部。如下：</p><pre><code class=language-javascript>function SuperType(supername) {
+    this.name = supername;
+}
+
+function SubType(subname, supername) {
+    SuperType.call(this, supername); // 第二次调用
+
+    this.subname = subname;
+}
+
+SubType.prototype = new SuperType(); // 第一次调用
+SubType.prototype.constructor = SubType;
+
+var subobj1 = new SubType(&quot;sub&quot;, &quot;super&quot;); // 第二次调用入口
+</code></pre><p>实际过程如下：</p><ul><li>第一次调用时，<code>SubType.prototype</code>中会存在属性<code>name</code>，来自于<code>SuperType</code>的实例属性。</li><li>第二次调用时，子类型对象实例上会存在实例属性<code>name</code>、<code>subname</code>，由于实例属性会屏蔽原型属性中的同名属性，真实使用的是实例属性<code>name</code>，而原型属性<code>name</code>会被屏蔽。</li></ul><p>这也就是组合继承中效率较低的地方。解决方法见<strong>寄生组合式继承</strong>。</p><h2 id=原型式继承>原型式继承</h2><p>适用情况：只是想让一个对象与另一个对象保持类似的情况下，添加新的属性和方法。</p><p>不涉及到类型（<code>function</code>），从头到尾使用的都是对象（<code>var</code>）。</p><pre><code class=language-javascript>// 注意这是个对象，而不是类型构造函数
+// 使用字面量对象、对象实例都可以
+var obj = {
+    name: &quot;objname&quot;,
+    arrays: [&quot;1&quot;, &quot;2&quot;],
+    func: function () {},
+};
+
+// Object.create()方法的两种参数形式
+var anotherobj1 = Object.create(obj);
+var anotherobj2 = Object.create(obj, {
+    name: {
+        enumerable: true,
+        value: &quot;newname&quot;,
+    },
+});
+</code></pre><p><code>Object.create()</code>方法创建一个新对象，使用现有的对象来提供新创建的对象的<code>__proto__</code>。</p><p><code>Object.create()</code>方法有两种参数形式：</p><ul><li><p>第一个参数：一个作为新对象原型的对象</p></li><li><p>第二个参数（可选）：为新对象定义新属性的对象，形式与 <code>Object.defineProperties()</code>的第二个参数格式相同</p></li></ul><p>特别注意第二个参数中，属性<code>name</code>的那四种数据属性，如果没有指定<code>enumerable: true</code>，在使用<code>for..in</code>和<code>printAllProps</code>时，属性不会被枚举到。</p><p>修改<code>anotherobj1</code>的<code>arrays</code>的值，如下：</p><pre><code class=language-javascript>anotherobj1.arrays.push(&quot;3&quot;);
+
+printAllProps(anotherobj1); // [ 'name:objname', 'arrays:1,2,3', 'func:function () {}' ]
+printAllProps(anotherobj2); // [ 'name:newname', 'arrays:1,2,3', 'func:function () {}' ]
+</code></pre><p>可以看到，使用原型式继承，同样也会存在使用原型链进行继承时的引用类型值的问题——包含引用类型值的属性始终会共享相应的值。</p><p>可通过以下代码验证：</p><pre><code class=language-javascript>console.log(anotherobj1.arrays === anotherobj2.arrays); // true
+console.log(anotherobj1.func === anotherobj2.func); // true```
+</code></pre><h2 id=寄生式继承>寄生式继承</h2><p>适用情况：在主要考虑的是对象，而不是自定义类型或构造函数时。</p><pre><code class=language-javascript>function createAnother(original) {
+    // 该Object()函数不是必须，任何返回一个对象的函数都可以
+    var clone = Object(original);
+
+    clone.newfunc = function () {};
+    return clone;
+}
+
+var original = {
+    name: &quot;originalName&quot;,
+};
+
+var another = createAnother(original);
+
+printAllProps(another); // [ 'name:originalName', 'newfunc:function () {}' ]
+</code></pre><p>缺点：与构造函数继承类似地，函数不能复用。</p><h2 id=寄生组合式继承>寄生组合式继承</h2><p>优点：高效率——弥补组合继承的不足，只调用一次超类型<code>SuperType</code>构造函数，避免了在子类型<code>SubType</code>的原型<code>prototype</code>上创建不必要的多余的属性和方法。</p><p>是目前引用类型最理想的继承范式。</p><p>本质：使用寄生式继承来继承超类型的原型（即只继承了超类型的原型属性，并没有在子类型原型上添加超类型实例属性），然后再将结果指定给子类型的原型。即，将组合继承中第一次调用超类型构造函数的地方进行了替换。</p><pre><code class=language-javascript>function SuperType(supername) {
+    this.name = supername;
+}
+
+SuperType.prototype.protofunc = function () {};
+
+function SubType(subname, supername) {
+    this.subname = subname;
+
+    SuperType.call(this, supername);
+}
+
+// 用以下方式替换组合继承中的第一次调用
+// 即，替换掉 SubType.prototype = new SuperType()
+
+// *************************************
+function inheritPrototype(subType, superType) {
+    var prototype = superType.prototype; // 创建原型对象
+    prototype.constructor = subType; // 增强对象
+    subType.prototype = prototype; // 指定原型对象
+}
+
+inheritPrototype(SubType, SuperType);
+// *************************************
+
+SubType.prototype.constructor = SubType;
+
+var subobj = new SubType(&quot;sub&quot;, &quot;super&quot;);
+
+printAllProps(subobj); // [ 'subname:sub', 'name:super', 'protofunc:function () {}' ]
+</code></pre><p>为创建的超类型原型副本<code>prototype</code>添加<code>constructor</code>属性的目的：弥补因重写而失去的默认的<code>constructor</code>属性，让<code>prototype</code>副本有正确的<code>constructor</code>属性指向。</p></div><div class=my-4><a href=/zh/tags/javascript/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#JavaScript</a>
+<a href=/zh/tags/inherit/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Inherit</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a><a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a><a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/frontendposts/js-function/ class=block>JavaScript函数的定义及使用</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/frontendposts/js-createobj/ class=block>JavaScript创建对象模式</a></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

@@ -1,0 +1,194 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width"><title>Flutter-Drawer, Transparent AppBar, Search, Navigator, Route | 中文标题</title><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null;this.rel='stylesheet'"><link rel=preload href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css as=style onload="this.onload=null;this.rel='stylesheet'"><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="Q1: Change Drawer Icon Q2: Detect behaviors on any Widgets Q3: Limit the number of lines and add ellipsis Q3: Create Transparent Appbar & &ldquo;Floating&rdquo; TextField 1. Add a TextField Widget to AppBar&rsquo;s title property 2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible Style the TextField Q4: Create a Search Bar Using ShowSearch() Q5: Vertical Viewport Was Given Unbounded Height Q6: Navigator & Route Introduction"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"中文标题","item":"/en/"},{"@type":"ListItem","position":2,"name":"Posts","item":"/en/posts/"},{"@type":"ListItem","position":3,"name":"Flutter-Drawer, Transparent AppBar, Search, Navigator, Route","item":"/en/posts/flutter-qa/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/en/posts/flutter-qa/"},"headline":"Flutter-Drawer, Transparent AppBar, Search, Navigator, Route | 中文标题","wordCount":1196,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"Q1: Change Drawer Icon Q2: Detect behaviors on any Widgets Q3: Limit the number of lines and add ellipsis Q3: Create Transparent Appbar \u0026amp; \u0026ldquo;Floating\u0026rdquo; TextField 1. Add a TextField Widget to AppBar\u0026rsquo;s title property 2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible Style the TextField Q4: Create a Search Bar Using ShowSearch() Q5: Vertical Viewport Was Given Unbounded Height Q6: Navigator \u0026amp; Route Introduction"}</script><meta property="og:title" content="Flutter-Drawer, Transparent AppBar, Search, Navigator, Route | 中文标题"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/en/posts/flutter-qa/"><meta property="og:description" content="Q1: Change Drawer Icon Q2: Detect behaviors on any Widgets Q3: Limit the number of lines and add ellipsis Q3: Create Transparent Appbar & &ldquo;Floating&rdquo; TextField 1. Add a TextField Widget to AppBar&rsquo;s title property 2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible Style the TextField Q4: Create a Search Bar Using ShowSearch() Q5: Vertical Viewport Was Given Unbounded Height Q6: Navigator & Route Introduction"><meta property="og:locale" content="en"><meta property="og:site_name" content="中文标题"><meta property="article:section" content="posts"><meta property="article:tag" content="Flutter"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/en class="mr-6 text-primary-text text-xl font-bold">中文标题</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=/en/posts/flutter-qa/><a href=/en/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/en/posts/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">Flutter-Drawer, Transparent AppBar, Search, Navigator, Route</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>0001-01-01</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>3 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=/en/categories/flutter-practice/ class=hover:text-eureka>Flutter Practice</a></div></div><div class=content><ul><li><a href=#q1-change-drawer-icon>Q1: Change Drawer Icon</a></li><li><a href=#q2-detect-behaviors-on-any-widgets>Q2: Detect behaviors on any Widgets</a></li><li><a href=#q3-limit-the-number-of-lines-and-add-ellipsis>Q3: Limit the number of lines and add ellipsis</a></li><li><a href=#q3-create-transparent-appbar--floating-textfield>Q3: Create Transparent Appbar & &ldquo;Floating&rdquo; TextField</a><ul><li><a href=#1-add-a-textfield-widget-to-appbars-title-property>1. Add a TextField Widget to <em>AppBar</em>&rsquo;s <em>title</em> property</a></li><li><a href=#2-make-a-translucent-appbar-and-let-the-body-widget-can-go-behind-the-appbar-and-be-visible>2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible</a></li><li><a href=#style-the-textfield>Style the TextField</a></li></ul></li><li><a href=#q4-create-a-search-bar-using-showsearch>Q4: Create a Search Bar Using <em>ShowSearch()</em></a></li><li><a href=#q5-vertical-viewport-was-given-unbounded-height>Q5: Vertical Viewport Was Given Unbounded Height</a></li><li><a href=#q6-navigator--route>Q6: Navigator & Route</a><ul><li><a href=#introduction>Introduction</a></li><li><a href=#steps-to-create-myroute-and-navigate>Steps to Create <code>MyRoute</code> and Navigate</a></li></ul></li><li><a href=#q7-click-the-blank-space-to-cancel-the-textfield-focus>Q7 Click the blank space to cancel the TextField focus</a></li></ul><h2 id=q1-change-drawer-icon>Q1: Change Drawer Icon</h2><p>The drawer has default three horizontal bars as default icon. To change it, use <em>leading</em> property of <em>AppBar</em>.</p><pre><code class=language-dart>Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.accessible),
+          onPressed: () =&gt; Scaffold.of(context).openDrawer(),   // will open the Widget defined in property 'drawer'
+        ),
+      ),
+      drawer: MyDrawer(),
+);
+</code></pre><h2 id=q2-detect-behaviors-on-any-widgets>Q2: Detect behaviors on any Widgets</h2><p>see <em>GestureDetector</em> class. Use <em>Padding</em> to constrain child&rsquo;s size.</p><h2 id=q3-limit-the-number-of-lines-and-add-ellipsis>Q3: Limit the number of lines and add ellipsis</h2><pre><code class=language-dart>Text(
+    'text',
+    maxLines: 2,
+    overflow: TextOverflow.ellipsis,
+),
+</code></pre><h2 id=q3-create-transparent-appbar--floating-textfield>Q3: Create Transparent Appbar & &ldquo;Floating&rdquo; TextField</h2><p>The goal is to create a &ldquo;floating&rdquo; textfield at the center position of appbar.</p><p>The steps are as follows:</p><ul><li>Add a TextField Widget to <em>AppBar</em>&rsquo;s <em>title</em> property</li><li>Make a translucent appbar and let the body Widget can go behind the appbar and be visible</li><li>Style the TextField</li></ul><h3 id=1-add-a-textfield-widget-to-appbars-title-property>1. Add a TextField Widget to <em>AppBar</em>&rsquo;s <em>title</em> property</h3><pre><code class=language-dart>import 'package:flutter/material.dart';
+
+class MyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: MyCustomTextField(),  //add custom textfield
+      ),
+      body: Container(height: 500.0, color: Colors.purple),
+    );
+  }
+}
+
+// definition of custom textfield
+class MyCustomTextField extends StatefulWidget {
+  @override
+  _MyCustomTextFieldState createState() =&gt; _MyCustomTextFieldState();
+}
+
+class _MyCustomTextFieldState extends State&lt;MyCustomTextField&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+        decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(),
+            labelText: 'Search',
+        )
+      );
+  }
+}
+</code></pre><p><code>MyCustomTextField</code> needs to be a stateful widget since we will manage its focus state later.</p><p>The page now looks like:</p><p><em>Why use enabledBorder instead of border?</em></p><blockquote><p>see how <a href=https://api.flutter.dev/flutter/material/InputDecoration/border.html>Flutter API</a> indicates</p><p>If custom BorderSide values are desired for a given state, all four borders – errorBorder, focusedBorder, enabledBorder, disabledBorder – must be set.</p></blockquote><p>I have tried to set border property at first but found it didn&rsquo;t work.</p><p>I suppose the question to be that <code>enabledBorder</code> has a higher priority to display than <code>border</code> does &ndash; even I have set <code>border</code>, it will use default <code>enabledBorder</code>. (Wrong? Help me to correct it!)</p><h3 id=2-make-a-translucent-appbar-and-let-the-body-widget-can-go-behind-the-appbar-and-be-visible>2. Make a translucent appbar and let the body Widget can go behind the appbar and be visible</h3><p>My reference:<br><a href=https://mrflutter.com/fullscreen-page-with-transparent-appbar-in-flutter/>Fullscreen page with transparent AppBar in Flutter</a></p><p>You may notice that the appbar seems to have a solid white background. We only want the textfield to be visible &ndash; the surroudings should be transparent.</p><p>We set backgroundcolor of AppBar to <code>Colors.transparent</code>.</p><p><a href=https://stackoverflow.com/questions/50032231/how-to-display-body-under-the-appbar-of-scaffold-widget-and-not-below>How to display body under the AppBar of scaffold widget and not below?</a></p><pre><code class=language-dart>@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true, // add this line
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,    // add this line
+        title: MyCustomTextField(),
+      ),
+      body: Container(height: 500.0, color: Colors.purple),
+    );
+  }
+</code></pre><p>Now the AppBar looks as:</p><p>Why is there a grey color background? This is because that AppBar has a none-zero elevation, this grey block is its shadow. Thus, we set <code>elevation</code> to 0.0.</p><pre><code class=language-dart>appBar: AppBar(
+        elevation: 0.0, // add this line
+        backgroundColor: Colors.transparent,
+        title: MyCustomTextField(),
+      ),
+</code></pre><p>The shadow was removed!</p><h3 id=style-the-textfield>Style the TextField</h3><p>Now we can decoration our textfield. The textfield is supposed to be rounded, white border, white backgroundcolor.</p><pre><code class=language-dart>appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        title: Container(
+          // height: AppBar().preferredSize.height * 0.8,
+          child: Material(
+            // elevation: 5,
+            borderRadius: BorderRadius.all(Radius.circular(100.0)),
+            color: Colors.transparent,
+            child: MyCustomTextField(),
+          ),
+        ),
+      ),
+</code></pre><pre><code class=language-dart>@override
+  Widget build(BuildContext context) {
+    return TextField(
+        decoration: InputDecoration(
+            fillColor: Colors.white,    // change from here ...
+            filled: true,
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(100.0),
+                borderSide: BorderSide(
+                    color: Colors.white,
+                ),
+            ),  // to here
+        labelText: 'Search',
+        )
+      );
+  }
+</code></pre><blockquote><p><code>fillColor</code>: The base fill color of the decoration&rsquo;s container color. The decoration&rsquo;s container is the area which is filled if filled is true and bordered per the border.</p><p>Thus, property <code>filled</code> has to be true. Otherwise, the decoration&rsquo;s container color will not be assigned white.</p></blockquote><p>Additional: <a href=https://stackoverflow.com/questions/54194347/how-to-add-drop-shadow-to-textformfield-in-flutter>How to Add Drop Shadow to TextFormField In Flutter</a></p><p>Done!</p><p>Want to modify textfield&rsquo;s height? Put <code>TextField</code> in a <em>Container</em> (as the comment), use <code>height</code> property to modify it!</p><h2 id=q4-create-a-search-bar-using-showsearch>Q4: Create a Search Bar Using <em>ShowSearch()</em></h2><p>To let it navigate to a new screen with a focused textfield(flutter default search textfield) after we click and try to focus the textfield created in Q3.</p><p>My reference:<br><a href=https://flutter.dev/docs/cookbook/forms/focus>Focus and text fields</a><br><a href="https://www.youtube.com/watch?v=Wm3OiFBZ2xI">Flutter&rsquo;s Search Support (The Boring Flutter Development Show, Ep. 10)</a></p><ul><li>Create a FocusNode.</li><li>Pass the FocusNode to a TextField.</li><li>Unfocus the TextField when it is tapped and <em>showSearch()</em></li><li>Define <em>SearchDelegate</em></li></ul><pre><code class=language-dart>class MyCustomTextField extends StatefulWidget {
+  @override
+  _MyCustomTextFieldState createState() =&gt; _MyCustomTextFieldState();
+}
+
+class _MyCustomTextFieldState extends State&lt;MyCustomTextField&gt; {
+  // add from here ...
+  FocusNode myFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    myFocusNode.dispose();
+    super.dispose();
+  }
+  // to here
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      focusNode: myFocusNode,
+      decoration: InputDecoration(
+        fillColor: Colors.white,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(100.0),
+          borderSide: BorderSide(
+            color: Colors.white,
+          ),
+        ),
+        labelText: 'Search',
+      ),
+      
+      //add from here ...
+      onTap: () {
+        showSearch(
+          context: context,
+          delegate: RecipeSearch(),
+        );
+        myFocusNode
+            .unfocus(); // let this textfield always be the unfocus state -- border unchanged
+      },  // to here
+    );
+  }
+}
+
+// add this class
+class RecipeSearch extends SearchDelegate&lt;String&gt; {
+  @override
+  List&lt;Widget&gt; buildActions(BuildContext context) {
+    return [    // actions(shown on the right side)
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () =&gt; query = '',    // when click, clear the text in the textfield
+      )
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(  // leading in the search bar
+      icon: Icon(Icons.arrow_back),
+      onPressed: () =&gt; close(context, null),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Container(); // the Widget show below the search bar
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Text(query); // the Widget show below the search bar when textfield is changed
+  }
+}
+
+</code></pre><h2 id=q5-vertical-viewport-was-given-unbounded-height>Q5: Vertical Viewport Was Given Unbounded Height</h2><p><a href=https://stackoverflow.com/questions/50252569/vertical-viewport-was-given-unbounded-height/54587532>Solution</a></p><h2 id=q6-navigator--route>Q6: Navigator & Route</h2><h3 id=introduction>Introduction</h3><ul><li><em>push</em> / <em>pop</em>, <em>maybepop</em> / <em>canpop</em></li><li><em>pushReplacementNamed</em> / <em>popAndPushNamed</em></li><li><em>pushNamedAndRemoveUntil</em> / <em>popUntil</em></li><li>how to send data and retrieve data?</li></ul><p>See <a href=https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31>Flutter: Push, Pop, Push</a>.</p><h3 id=steps-to-create-myroute-and-navigate>Steps to Create <code>MyRoute</code> and Navigate</h3><p><a href=https://medium.com/flutter-community/clean-navigation-in-flutter-using-generated-routes-891bd6e000df>Clean Navigation in Flutter Using Generated Routes</a> gives a clear steps to create <code>MyRoute</code>. (Change the classname in this tutorial from <code>Route</code> to <code>MyRoute</code> since it will triggle an error &ndash; maybe because <code>Route</code> has been already defined in other dart packages)</p><p>You can also use</p><pre><code class=language-dart>Navigator.popUntil(
+    context,
+    ModalRoute.withName(
+        Navigator.defaultRouteName,
+    ),
+),
+</code></pre><p>to reach the root of the stack.</p><p>My reference: <a href=https://stackoverflow.com/questions/56238574/how-to-use-popuntil-properly-to-reach-the-root-of-the-stack>How to use popUntil properly to reach the root of the stack?</a></p><p>If after your navigation it returns a black screen, make sure to just use Scaffold as a top widget instead of MaterialApp in all nested screens.</p><p>My reference: <a href=https://stackoverflow.com/questions/53723294/flutter-navigator-popcontext-returning-a-black-screen>Flutter Navigator.pop(context) returning a black screen</a></p><h2 id=q7-click-the-blank-space-to-cancel-the-textfield-focus>Q7 Click the blank space to cancel the TextField focus</h2><p>See <a href=https://blog.csdn.net/weixin_34247155/article/details/88002081>笔记-Flutter 之点击空白处取消TextField焦点</a></p></div><div class=my-4><a href=/en/tags/flutter/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Flutter</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/en/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/en/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/en/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a><a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a><a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

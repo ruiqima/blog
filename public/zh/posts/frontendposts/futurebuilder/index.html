@@ -1,0 +1,129 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>Dart异步、Flutter FutureBuilder class | MLC NOTES</title><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null;this.rel='stylesheet'"><link rel=preload href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css as=style onload="this.onload=null;this.rel='stylesheet'"><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="问题描述 解决方案 Dart异步——Future，async，await Flutter——FutureBuilder<T> class 最关键的两部分 本例"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"MLC NOTES","item":"/zh/"},{"@type":"ListItem","position":3,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":4,"name":"Dart异步、Flutter FutureBuilder class","item":"/zh/posts/frontendposts/futurebuilder/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/frontendposts/futurebuilder/"},"headline":"Dart异步、Flutter FutureBuilder class | MLC NOTES","datePublished":"2020-09-20T21:22:22+08:00","dateModified":"2020-09-20T21:22:22+08:00","wordCount":1299,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"问题描述 解决方案 Dart异步——Future，async，await Flutter——FutureBuilder\u0026lt;T\u0026gt; class 最关键的两部分 本例"}</script><meta property="og:title" content="Dart异步、Flutter FutureBuilder class | MLC NOTES"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/frontendposts/futurebuilder/"><meta property="og:description" content="问题描述 解决方案 Dart异步——Future，async，await Flutter——FutureBuilder<T> class 最关键的两部分 本例"><meta property="og:locale" content="zh"><meta property="og:site_name" content="MLC NOTES"><meta property="article:published_time" content="2020-09-20T21:22:22+08:00"><meta property="article:modified_time" content="2020-09-20T21:22:22+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Flutter FutureBuilder"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">MLC NOTES</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=/zh/posts/frontendposts/futurebuilder/><a href=/zh/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">Dart异步、Flutter FutureBuilder class</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>2020-09-20</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>3分钟阅读时长</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=/zh/categories/flutter%E6%BC%94%E7%BB%83/ class=hover:text-eureka>Flutter演练</a></div></div><div class=content><ul><li><a href=#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0>问题描述</a></li><li><a href=#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88>解决方案</a><ul><li><a href=#dart%E5%BC%82%E6%AD%A5futureasyncawait>Dart异步——Future，async，await</a></li><li><a href=#flutterfuturebuilder%5Ct-class>Flutter——FutureBuilder&lt;T> class</a><ul><li><a href=#%E6%9C%80%E5%85%B3%E9%94%AE%E7%9A%84%E4%B8%A4%E9%83%A8%E5%88%86>最关键的两部分</a></li><li><a href=#%E6%9C%AC%E4%BE%8B%E5%AE%9E%E4%BE%8B>本例实例</a></li></ul></li></ul></li></ul><h2 id=问题描述>问题描述</h2><p>情景：通过flutter插件把键值对写入本机储存，从本机获取写入的键值对，页面一加载就把值显示出来。</p><p>问题点：</p><ul><li>键值对的写入和获取都是异步操作</li><li>需要在写入且读取后，页面中显示的值应该是最新获取到的值</li></ul><h2 id=解决方案>解决方案</h2><h3 id=dart异步futureasyncawait>Dart异步——Future，async，await</h3><p><a href=https://dart.dev/codelabs/async-await>官方文档</a>说的很清楚</p><h3 id=flutterfuturebuildert-class>Flutter——FutureBuilder&lt;T> class</h3><p><a href=https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html>官方文档</a></p><blockquote><p>Widget that builds itself based on the latest snapshot of interaction with a Future.</p></blockquote><h4 id=最关键的两部分>最关键的两部分</h4><ol><li>定义一个<code>Future&lt;T></code>类型的变量<code>_future</code>。<code>FutureBuilder&lt;T></code>最终呈现出来的内容是根据<code>_future</code>的状态的来的。以String类型为例。</li></ol><pre><code class=language-dart>Future&lt;String&gt; _future = ...
+</code></pre><p><code>_future</code>的赋值可以有多种方式，例如：</p><pre><code class=language-dart>// 1. 使用Future&lt;T&gt;.delayed(...)
+_future = Future&lt;String&gt;.delayed(
+  Duration(seconds: 2),
+  () =&gt; 'Data Loaded',
+);
+
+//或者 2. 接收返回类型为Future&lt;T&gt;的函数的返回值
+Future&lt;String&gt; func() async {
+  return asyncfunc();
+}
+_future = func();
+
+</code></pre><ol start=2><li>定义一个<code>FutureBuilder&lt;T>()</code>的Widget。以String类型为例。</li></ol><pre><code class=language-dart>FutureBuilder&lt;String&gt;(
+      future: _future, // a previously-obtained Future&lt;String&gt; or null
+      builder: (BuildContext context, AsyncSnapshot&lt;String&gt; snapshot) {
+        Widget child;
+        if (snapshot.hasData) {
+          child = ...   //_future已经ConnectionState.done且成功时需要显示的页面内容
+        } else if (snapshot.hasError) {
+          child = ...   //_future已经ConnectionState.done但有error时需要显示的页面内容
+        } else {
+          child = ...   //_future已经ConnectionState.none/waiting时需要显示的页面内容
+        }
+        return child；
+      },
+    );
+</code></pre><blockquote><p>The builder is provided with an [AsyncSnapshot] object whose [AsyncSnapshot.connectionState] property will be one of the following values:</p><ul><li>[ConnectionState.none]: [future] is null. The [AsyncSnapshot.data] will be set to [initialData], unless a future has previously completed, in which case the previous result persists.</li><li>[ConnectionState.waiting]: [future] is not null, but has not yet completed. The [AsyncSnapshot.data] will be set to [initialData], unless a future has previously completed, in which case the previous result persists.</li><li>[ConnectionState.done]: [future] is not null, and has completed. If the future completed successfully, the [AsyncSnapshot.data] will be set to the value to which the future completed. If it completed with an error, [AsyncSnapshot.hasError] will be true and [AsyncSnapshot.error] will be set to the error object.</li></ul><p>This builder <strong>must only return a widget</strong> and should not have any side effects as it may be called multiple times.</p></blockquote><h4 id=本例实例>本例实例</h4><p>基本框架如下：</p><pre><code class=language-dart>import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: StorageTestWidget(),
+    );
+  }
+}
+
+class StorageTestWidget extends StatefulWidget {
+  StorageTestWidget({Key key}) : super(key: key);
+
+  @override
+  _StorageTestWidgetState createState() =&gt; _StorageTestWidgetState();
+}
+
+class _StorageTestWidgetState extends State&lt;StorageTestWidget&gt; {
+  // 定义存取方法...
+
+  // 关键部分1：定义Future&lt;String&gt;类型变量_future...
+  
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder&lt;String&gt;(
+      // 关键部分2：定义FutureBuilder&lt;String&gt;()中的内容...
+
+    );
+  }
+}
+</code></pre><p>在<code>_StorageTestWidgetState class</code>中具体为：</p><pre><code class=language-dart>class _StorageTestWidgetState extends State&lt;StorageTestWidget&gt; {
+  
+  final _storage = new FlutterSecureStorage(); // Create storage
+  Future&lt;String&gt; _future; // 定义Future&lt;String&gt;类型变量_future
+  String _value;  //_value用于保存获取到的值
+
+  // From here...
+  // 定义写方法
+  Future&lt;void&gt; write() async {
+    return await _storage.write(key: 'key', value: 'value');
+  }
+  //定义返回值是Future&lt;String&gt;的读方法
+  Future&lt;String&gt; read() async {
+    _value = await _storage.read(key: 'key');
+    return _storage.read(key: 'key');
+  }
+  // To here
+
+  // 将返回类型为Future&lt;String&gt;的函数的返回值赋值给_future
+  @override
+  void initState() {
+    super.initState();
+    write();
+    _future = read();
+  }
+
+  Widget build(BuildContext context) {
+    return FutureBuilder&lt;String&gt;(
+      future: _future,
+      builder: (BuildContext context, AsyncSnapshot&lt;String&gt; snapshot) {
+        Widget child;
+        if (snapshot.hasData) {
+          child = Text(
+            _value, //value showed
+            style: TextStyle(color: Colors.amber),
+          );
+        } else if (snapshot.hasError) {
+          child = Text(
+            'Error: ${snapshot.error}',
+            style: TextStyle(color: Colors.amber),
+          );
+        } else {
+          child = Text(
+            'ConnectionState.none/waiting',
+            style: TextStyle(color: Colors.amber),
+          );
+        }
+        return Center(
+          child: child,
+        );
+      },
+    );
+  }
+}
+</code></pre></div><div class=my-4><a href=/zh/tags/flutter-futurebuilder/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Flutter FutureBuilder</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a><a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a><a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/appiumposts/python-appium/ class=block>VSCode+Python+Appium安装及简单示例</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/frontendposts/js-properties/ class=block>JavaScript属性类型</a></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
