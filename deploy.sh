@@ -11,21 +11,9 @@ if [ -n "$*" ]; then
 	msg="$*"
 fi
 
-# Add changes to git.
-git add .
-
-# Commit changes.
-git commit -m "$msg"
-
-# Push source and build repos.
-git push origin master
-
 # Build the project.
 hugo --gc --minify # if using a theme, replace with `hugo -t <YOURTHEME>`
 
-# Go To Public folder
-cd public
-
 # Add changes to git.
 git add .
 
@@ -34,5 +22,3 @@ git commit -m "$msg"
 
 # Push source and build repos.
 git push origin master
-
-git push coding master
