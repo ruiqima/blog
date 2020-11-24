@@ -1,0 +1,127 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>JavaScript函数的定义及使用 | MLC NOTES</title><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null;this.rel='stylesheet'"><link rel=preload href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css as=style onload="this.onload=null;this.rel='stylesheet'"><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="定义函数 函数声明 函数表达式 函数的使用 作为其他函数参数 作为其他函数的返回值 递归 执行环境、作用域链、活动对象 闭包 定义函数 定义函数有两种方式，总结这两种定义"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"MLC NOTES","item":"/zh/"},{"@type":"ListItem","position":3,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":4,"name":"JavaScript函数的定义及使用","item":"/zh/posts/javascript/js-function/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/javascript/js-function/"},"headline":"JavaScript函数的定义及使用 | MLC NOTES","datePublished":"2020-04-27T20:34:45+08:00","dateModified":"2020-04-27T20:34:45+08:00","wordCount":1474,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"定义函数 函数声明 函数表达式 函数的使用 作为其他函数参数 作为其他函数的返回值 递归 执行环境、作用域链、活动对象 闭包 定义函数 定义函数有两种方式，总结这两种定义"}</script><meta property="og:title" content="JavaScript函数的定义及使用 | MLC NOTES"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/javascript/js-function/"><meta property="og:description" content="定义函数 函数声明 函数表达式 函数的使用 作为其他函数参数 作为其他函数的返回值 递归 执行环境、作用域链、活动对象 闭包 定义函数 定义函数有两种方式，总结这两种定义"><meta property="og:locale" content="zh"><meta property="og:site_name" content="MLC NOTES"><meta property="article:published_time" content="2020-04-27T20:34:45+08:00"><meta property="article:modified_time" content="2020-04-27T20:34:45+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="JavaScript"><meta property="og:see_also" content="/zh/posts/javascript/js-createobj/"><meta property="og:see_also" content="/zh/posts/javascript/js-load-script/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">MLC NOTES</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=/zh/posts/javascript/js-function/><a href=/zh/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">JavaScript函数的定义及使用</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>2020-04-27</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>3分钟阅读时长</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=/zh/categories/javascript%E8%BF%9B%E9%98%B6%E4%B9%8B%E8%B7%AF/ class=hover:text-eureka>JavaScript进阶之路</a></div></div><div class=content><ul><li><a href=#%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0>定义函数</a><ul><li><a href=#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E>函数声明</a></li><li><a href=#%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F>函数表达式</a></li></ul></li><li><a href=#%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8>函数的使用</a><ul><li><a href=#%E4%BD%9C%E4%B8%BA%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0>作为其他函数参数</a></li><li><a href=#%E4%BD%9C%E4%B8%BA%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC>作为其他函数的返回值</a></li><li><a href=#%E9%80%92%E5%BD%92>递归</a></li><li><a href=#%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E6%B4%BB%E5%8A%A8%E5%AF%B9%E8%B1%A1>执行环境、作用域链、活动对象</a></li><li><a href=#%E9%97%AD%E5%8C%85>闭包</a></li></ul></li></ul><h2 id=定义函数>定义函数</h2><p>定义函数有两种方式，总结这两种定义函数的特性和适应情况如下。</p><h3 id=函数声明>函数声明</h3><pre><code class=language-javascript>function func() {}
+</code></pre><p>特征：</p><ul><li>函数声明提升（可以把函数声明放在调用它的语句后面）</li></ul><h3 id=函数表达式>函数表达式</h3><pre><code class=language-javascript>var func = function () {};
+</code></pre><p>特征：</p><ul><li>此时创建的是匿名函数</li><li>必须在使用前赋值（即不存在提升）</li></ul><p>适合使用 <em>函数表达式</em> 的情况：</p><ul><li>根据<code>condition</code>赋值不同函数（如<code>if-else</code>）</li></ul><pre><code class=language-javascript>var condition_func;
+var condition = false;
+
+if (condition) {
+    condition_func = function () {
+        console.log(&quot;in if&quot;);
+    };
+} else {
+    condition_func = function () {
+        console.log(&quot;in else&quot;);
+    };
+}
+
+condition_func(); // in else
+</code></pre><h2 id=函数的使用>函数的使用</h2><h3 id=作为其他函数参数>作为其他函数参数</h3><p>逆序排列数组，将<code>reverse</code>函数作为参数传递给<code>sort()</code>。</p><pre><code class=language-javascript>function reverse(a, b) {
+    return b - a;
+}
+
+var arr = new Array(&quot;10&quot;, &quot;5&quot;, &quot;40&quot;);
+console.log(arr.sort(reverse));
+</code></pre><p>输出结果为，验证正确：</p><pre><code class=language-javascript>[&quot;40&quot;, &quot;10&quot;, &quot;5&quot;];
+</code></pre><h3 id=作为其他函数的返回值>作为其他函数的返回值</h3><p>对象数组，按照其中某一属性值排序。</p><pre><code class=language-javascript>function sortByProp(propertyname) {
+    return function (obj1, obj2) {
+        let val1 = obj1[propertyname];
+        let val2 = obj2[propertyname];
+
+        return val1 - val2;
+    };
+}
+
+var persons = [
+    {
+        name: &quot;Jake&quot;,
+        age: 28,
+    },
+    {
+        name: &quot;Maria&quot;,
+        age: 23,
+    },
+    {
+        name: &quot;Jimmy&quot;,
+        age: 15,
+    },
+];
+console.log(persons.sort(sortByProp(&quot;age&quot;)));
+</code></pre><p>输出结果为，验证正确：</p><pre><code class=language-javascript>[
+    { name: &quot;Jimmy&quot;, age: 15 },
+    { name: &quot;Maria&quot;, age: 23 },
+    { name: &quot;Jake&quot;, age: 28 },
+];
+</code></pre><h3 id=递归>递归</h3><p>一般递归形式如下：</p><pre><code class=language-javascript>function func() {
+    func();
+}
+</code></pre><p>但此时存在一个可能的问题，如果想把函数保存在一个变量中，通过变量调用时就会出现问题。</p><pre><code class=language-javascript>function func() {
+    // do sth ...
+    func();
+}
+
+var anotherfunc = func;
+func = null; // 只有anotherfunc一个指向函数的引用
+anotherfunc(); // 出错
+</code></pre><p>原因：在执行函数时会包括执行名为<code>func</code>的函数，但此时<code>func</code>已被解引用。</p><p>解决方案：使用<code>arguments.callee</code>代替函数名——一个指向正在执行的函数的指针，适合于实现函数的递归调用。</p><pre><code class=language-javascript>function func() {
+    // do sth ...
+    arguments.callee(); // ! important
+}
+
+var anotherfunc = func;
+func = null;
+anotherfunc();
+</code></pre><h3 id=执行环境作用域链活动对象>执行环境、作用域链、活动对象</h3><p><strong>变量对象和活动对象</strong></p><p>变量对象（VO）：与执行上下文概念对应，包含了执行上下文中的所有变量、函数以及当前执行上下文函数的参数列表。</p><p>活动对象（AO）：进入到执行阶段之后，变量对象转变成了活动对象。</p><p><strong>作用域链</strong></p><p>本质上是一个指向变量对象的指针列表，只引用但不实际包含变量对象。</p><p>在函数中访问一个变量时，会从作用域中搜索具有相应名字的变量</p><p><strong>作用域链是怎么创建的</strong></p><p>在函数被创建时，首先创建一个执行环境、以及相应的作用域链。再使用<code>arguments</code>和其他命名参数的值来初始化函数的活动对象。</p><p>在函数执行过程中，需要在作用域中查找变量。从作用域链链首开始寻找。</p><p><strong>先回顾一下变量提升、函数声明提升</strong></p><p>变量提升：变量的定义提升（注意块级作用域中，用<code>let</code>声明的变量不存在变量提升），但赋值不提升。</p><pre><code class=language-javascript>console.log(a); // undefined
+var a = 10;
+</code></pre><p>函数声明提升</p><pre><code class=language-javascript>f(); // doing sth...
+function f() {
+    console.log(&quot;doing sth...&quot;);
+}
+</code></pre><p>综合来看，可以得知一下代码会输出如下结果 <em>（如果不知道为什么，请先回顾一下变量提升和函数声明提升的内容）</em>：</p><pre><code class=language-javascript>a(); // function
+
+var a = function () {
+    console.log(&quot;anonymous&quot;);
+};
+function a() {
+    console.log(&quot;function&quot;);
+}
+</code></pre><pre><code class=language-javascript>var a = function () {
+    console.log(&quot;anonymous&quot;);
+};
+function a() {
+    console.log(&quot;function&quot;);
+}
+
+a(); // anonymous
+</code></pre><pre><code class=language-javascript>var a = &quot;global a&quot;; // 语句1
+
+function b() {
+    console.log(&quot;global b()&quot;);
+}
+
+function c(a, b) {
+    arguments[1](); // 输出：inner b()，可以看出此处的b已经是inner funciton
+    b(); // inner b()
+
+    console.log(a); // global a，语句2
+    var a = &quot;inner a&quot;;
+    function b() {
+        console.log(&quot;inner b()&quot;);
+    }
+}
+c(a, b); // 每步骤输出见上
+b(); // global b()
+</code></pre><p>有以下关键点：</p><ul><li>运行到 <em>语句 1</em> 但还未执行时：</li></ul><ul><li>进入函数 c 的执行时，内部函数 b 因为函数声明提升，会将参数 b 的值改为指向这个内部函数 b 。</li></ul><p><strong>作用域链是怎样创建的</strong></p><p>在创建<code>c()</code>函数时，会创建一个预先包含全局变量对象的作用域链，该作用域链会被保存在内部的<code>[[Scope]]</code>属性中。</p><p>当调用<code>c()</code>函数时，会为函数创建一个执行环境，然后复制函数的<code>[[Scope]]</code>属性中的对象构建起执行环境的作用域链。</p><p>然后，又有一个活动对象被创建，并推入执行环境作用域链的前端。</p><h3 id=闭包>闭包</h3><p>首先要明确<strong>闭包</strong>和<strong>匿名函数</strong>的概念。闭包是指有权访问另一个函数作用域中的变量的函数。<em>（划重点：要访问另一个函数作用域中的变量）</em></p><p><strong>创建方式</strong></p><p>常见方式就是在一个函数内部创建另一个函数。</p></div><div class=my-4><a href=/zh/tags/javascript/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#JavaScript</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a><a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a><a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/javascript/js-properties/ class=block>JavaScript属性类型</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/javascript/js-inherit/ class=block>JavaScript继承方法详解</a></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">相关</h2><div class=content><a href=/zh/posts/javascript/js-createobj/>JavaScript创建对象模式</a><br><a href=/zh/posts/javascript/js-load-script/>script加载方式以及元素属性</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

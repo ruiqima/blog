@@ -1,0 +1,151 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>JavaScript属性类型 | MLC NOTES</title><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null;this.rel='stylesheet'"><link rel=preload href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css as=style onload="this.onload=null;this.rel='stylesheet'"><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="数据属性 访问器属性 读取属性的特性 判断是否包含某属性和 in 操作符 获取属性 for-in——所有枚举属性 Object.keys()——可枚举实例属性的字符串数"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":2,"name":"MLC NOTES","item":"/zh/"},{"@type":"ListItem","position":3,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":4,"name":"JavaScript属性类型","item":"/zh/posts/javascript/js-properties/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/javascript/js-properties/"},"headline":"JavaScript属性类型 | MLC NOTES","datePublished":"2020-04-28T23:22:42+08:00","dateModified":"2020-04-28T23:22:42+08:00","wordCount":2264,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"数据属性 访问器属性 读取属性的特性 判断是否包含某属性和 in 操作符 获取属性 for-in——所有枚举属性 Object.keys()——可枚举实例属性的字符串数"}</script><meta property="og:title" content="JavaScript属性类型 | MLC NOTES"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/javascript/js-properties/"><meta property="og:description" content="数据属性 访问器属性 读取属性的特性 判断是否包含某属性和 in 操作符 获取属性 for-in——所有枚举属性 Object.keys()——可枚举实例属性的字符串数"><meta property="og:locale" content="zh"><meta property="og:site_name" content="MLC NOTES"><meta property="article:published_time" content="2020-04-28T23:22:42+08:00"><meta property="article:modified_time" content="2020-04-28T23:22:42+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="JavaScript"><meta property="og:see_also" content="/zh/posts/javascript/js-function/"><meta property="og:see_also" content="/zh/posts/javascript/js-createobj/"><meta property="og:see_also" content="/zh/posts/javascript/js-load-script/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">MLC NOTES</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=/zh/posts/javascript/js-properties/><a href=/zh/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">JavaScript属性类型</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>2020-04-28</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>5分钟阅读时长</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=/zh/categories/javascript%E8%BF%9B%E9%98%B6%E4%B9%8B%E8%B7%AF/ class=hover:text-eureka>JavaScript进阶之路</a></div></div><div class=content><ul><li><a href=#%E6%95%B0%E6%8D%AE%E5%B1%9E%E6%80%A7>数据属性</a></li><li><a href=#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7>访问器属性</a></li><li><a href=#%E8%AF%BB%E5%8F%96%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7>读取属性的特性</a></li><li><a href=#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%AB%E6%9F%90%E5%B1%9E%E6%80%A7%E5%92%8C-in-%E6%93%8D%E4%BD%9C%E7%AC%A6>判断是否包含某属性和 in 操作符</a></li><li><a href=#%E8%8E%B7%E5%8F%96%E5%B1%9E%E6%80%A7>获取属性</a><ul><li><a href=#for-in%E6%89%80%E6%9C%89%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7>for-in——所有枚举属性</a></li><li><a href=#objectkeys%E5%8F%AF%E6%9E%9A%E4%B8%BE%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84>Object.keys()——可枚举实例属性的字符串数组</a></li><li><a href=#objectgetownpropertynames%E6%89%80%E6%9C%89%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84>Object.getOwnPropertyNames()——所有实例属性的字符串数组</a></li><li><a href=#%E6%B3%A8%E6%84%8F-consolelog>注意 console.log()</a></li></ul></li></ul><h2 id=数据属性>数据属性</h2><p><code>[[Configurable]]</code>：表示能否通过 delete 删除属性，能否修改属性特性，能否把属性修改为访问器属性。
+<code>[[Enumerable]]</code>：表示能否通过 for-in 循环返回属性。
+<code>[[Writable]]</code>：表示是否能修改属性值。
+<code>[[Value]]</code>：包含这个属性的数据值，默认值为<code>undefined</code>。</p><p>当直接在对象上定义属性时（即<code>var Person={name:'Joker'}</code>），前三个属性都默认为<code>true</code>。</p><p><strong>修改属性默认的特性的方法——Object.defineProperty()</strong></p><p>在调用 Object.defineProperty()方法创建一个新的属性时，如果不指定<code>considerable</code>，<code>innumerable</code>和<code>writeable</code>特性的默认值都是<code>false</code>。当只是修改一个已定义的属性的特性时，无此限制。</p><p>一旦把属性的<code>considerable</code>定义为<code>false</code>，即，把属性定义为不可配置的，则不能变回可配置了，且修改除<code>writable</code>之外的属性都会发生错误。</p><pre><code>var Person = {}
+Object.defineProperty(person, 'name', {
+  value: 'Joker',	//如果不指定那三个属性，则都默认为false
+})
+
+// 'use strict' //声明为严格模式
+person.name = 'rewrite' // 在严格模式下会报错，在非严格模式下下会忽略该语句
+</code></pre><p>在非严格模式下，修改已设置<code>writable</code>为<code>false</code>的属性的值，赋值操作将会被忽略；在严格模式下，将抛出错误。</p><pre><code>var person = {
+  name: 'defaultname',
+}
+
+Object.defineProperty(person, 'name', {
+  writable: false,		//设置name属性为不可修改
+})
+
+person.name = 'rewrite1'			//重写失败，在非严格模式下会忽略，严格模式下会报错
+console.log(person1.name)		//defaultname
+
+Object.defineProperty(person1, 'name', {
+  writable: true,		//重新设置name属性为可修改
+})
+
+person1.name = 'rewrite2'		//可以修改
+console.log(person1.name)		//rewrite2
+</code></pre><h2 id=访问器属性>访问器属性</h2><p>包含<code>getter</code>和<code>setter</code>函数。在读取访问器属性时，会调用<code>get</code>函数负责返回有效的值；在写入访问期属性时会调用<code>set</code>函数并传入新值，负责如何处理数据。
+通过<code>Object.defineProperty()</code>来定义。
+使用访问器属性的常见方式是，设置一个属性的值会导致其他属性发生变化，如下：</p><pre><code>var book = {
+  year: 2000,
+  edition: 1,
+}
+
+Object.defineProperty(book, 'year', {
+  get: function () {
+    return this.year
+  },
+  set: function (newValue) {
+    if (newValue &gt;= 2000) {		// 改变year的同时改变edition
+      this.edition = Math.floor((newValue - 2000) / 3) + 1
+    }
+  },
+})
+
+book.year = 2001
+console.log(book.edition)		// 1
+
+book.year = 2010
+console.log(book.edition)		// 4
+</code></pre><p>只指定<code>getter</code>意味着属性不可写，非严格模式下，尝试写入会被忽略，严格模式下，会抛出错误。
+只指定<code>setter</code>意味着属性不可读，非严格模式下，会返回<code>undefined</code>，严格模式下，会抛出错误。</p><h2 id=读取属性的特性>读取属性的特性</h2><pre><code>var person = {}
+
+Object.defineProperty(person, 'name', {
+  enumerable: false,
+  value: 'name',
+})
+
+// 读取属性的特性
+var descriptor = Object.getOwnPropertyDescriptor(person, 'name')
+console.log(descriptor.enumerable) 		//false
+console.log(descriptor.value) 		//name
+</code></pre><h2 id=判断是否包含某属性和-in-操作符>判断是否包含某属性和 in 操作符</h2><p><code>.hasOwnProperty()</code>用于检测一个属性存在于实例中，还是在原型中。当存在于实例中时返回 true。</p><pre><code>function Person() {}
+Person.prototype.name = 'defaultName'		//添加一个原型属性
+person.job = 'instanceJob'		//添加一个实例属性
+console.log(person.hasOwnProperty('job')) 	// true
+console.log(person.hasOwnProperty('name')) 	// false
+</code></pre><p><code>in操作符</code>：检测属性是否在实例或原型中，只要包括，就为 true。</p><pre><code>console.log('name' in person1) 		// true
+console.log('job' in person1)		 // true
+</code></pre><p><strong>结合 in 操作符和 hasOwnProperty()可以判断一个属性是实例属性还是原型属性</strong></p><pre><code>function hasPrototypeProperty(obj, name) {
+  return !obj.hasOwnProperty(name) &amp;&amp; name in obj
+}
+
+console.log(hasPrototypeProperty(person, 'name')) // true
+console.log(hasPrototypeProperty(person, 'job')) // false
+</code></pre><h2 id=获取属性>获取属性</h2><h3 id=for-in所有枚举属性>for-in——所有枚举属性</h3><pre><code>// 现在person实例有实例属性name、sayName，原型属性job、sayJob
+for (let prop in person1) {
+  console.log(prop) //所有实例属性、原型属性
+}
+</code></pre><p>注意<code>let prop in person1</code>中的 prop 的类型是<code>String</code>，因此如果要通过<code>prop</code>访问<code>person1</code>中的属性的值，应使用<code>person1[pop]</code>，而不能使用<code>person1.prop</code>。</p><p>访问 js 对象属性值<code>[]</code>和<code>.</code>的区别：<code>[]</code>中接受的是字符串，如<code>person1["name"]</code>，而<code>.</code>接受的是直接的属性名，如<code>person1.name</code>。</p><p>被设置为不可枚举，即 emunerable 为 false 的属性在 for..in 中不会被访问到。</p><pre><code>function Person() {}
+//定义原型属性，其中一个在后面被设置为不可枚举
+Person.prototype.protoNameEmun = 'protoNameEmun'
+Person.prototype.protoNameUnemun = 'protoNameUnemun'
+Person.prototype.protoSayName = function () {}
+
+var person = new Person()
+
+//定义实例属性，其中一个在后面被设置为不可枚举
+person.instanceNameEmun = 'instanceNameEmun'
+person.instanceNameUnemun = 'instanceNameUnemun'
+person.instanceSayName = function () {}
+
+// 定义为不可枚举
+Object.defineProperties(person, {
+  protoNameUnemun: {
+    enumerable: false,
+  },
+  instanceNameUnemun: {
+    enumerable: false,
+  },
+})
+
+// 输出实例属性、原型属性中所有可枚举的，不可枚举的不输出
+// 输出：instanceNameEmun、instanceSayName、protoNameEmun、protoSayName
+for (let prop in person) {
+  console.log(prop)
+}
+</code></pre><h3 id=objectkeys可枚举实例属性的字符串数组>Object.keys()——可枚举实例属性的字符串数组</h3><p><code>Object.keys()</code>方法这个方法接收一个对象作为参数，返回一个包含所有<strong>可枚举的实例属性</strong>的<strong>字符串数组</strong>。
+同样，对于上述的例子：</p><pre><code>var key1 = Object.keys(Person.prototype)
+var key2 = Object.keys(person)
+
+console.log(key1)	//[ 'protoNameEmun', 'protoNameUnemun', 'protoSayName' ]
+console.log(key2)	//[ 'instanceNameEmun', 'instanceSayName' ]
+</code></pre><h3 id=objectgetownpropertynames所有实例属性的字符串数组>Object.getOwnPropertyNames()——所有实例属性的字符串数组</h3><p>返回包含所有实例属性（不论是否可以枚举）的字符串数组。</p><pre><code>var names1 = Object.getOwnPropertyNames(Person.prototype)
+var names2 = Object.getOwnPropertyNames(person)
+
+console.log(names1)
+// [ 'constructor', 'protoNameEmun', 'protoNameUnemun', 'protoSayName' ]
+console.log(names2)
+// [  'instanceNameEmun',  'instanceNameUnemun',  'instanceSayName',  'protoNameUnemun' ]
+</code></pre><p>注意在 name1 中包含了不可枚举属性 constructor，正说明了“不论是否可以枚举”这一点。</p><h3 id=注意-consolelog>注意 console.log()</h3><p>在 vscode 中 console.log(obj)出来的对象，显示的只有实例属性。
+假设<code>SuperType</code>中包括实例属性和方法<code>name, sayName</code>，包括原型方法<code>sayProto</code>，则：</p><pre><code>// 自定义一个能打印出所有实例属性、原型属性的方法，使用for..in
+function printAllProps(obj) {
+  let array = []
+  for (let prop in obj) {
+    array.push(prop)
+  }
+  console.log(array)
+}
+
+var obj = new SuperType('Joker')
+console.log(obj)
+printAllProps(obj)
+</code></pre><p>最后两行在 vscode 中打印出来的内容分别为：
+<code>SuperType { name: 'Joker', sayName: [Function] }</code>
+<code>[ 'name', 'sayName', 'sayProto' ]</code></p><p>可以看到，原型上的<code>sayProto</code>方法并没有在<code>console.log</code>中打印出来。</p></div><div class=my-4><a href=/zh/tags/javascript/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#JavaScript</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a><a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a><a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/flutter/futurebuilder/ class=block>Dart异步、Flutter FutureBuilder class</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/javascript/js-function/ class=block>JavaScript函数的定义及使用</a></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">相关</h2><div class=content><a href=/zh/posts/javascript/js-function/>JavaScript函数的定义及使用</a><br><a href=/zh/posts/javascript/js-createobj/>JavaScript创建对象模式</a><br><a href=/zh/posts/javascript/js-load-script/>script加载方式以及元素属性</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
