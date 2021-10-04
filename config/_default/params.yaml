@@ -1,0 +1,24 @@
+mainSections:
+  - posts
+description: Eureka is a elegant and powerful theme for Hugo.
+repoURL: ''
+repoEditURL: ''
+dateFormat: ''
+siteType: Person
+icon: images/icon.png
+publisherName: Example publisher
+publisherLogo: ''
+hero:
+  slogan: 'We are all in the gutter, but some of us are looking at the stars.'
+  imgLeft: images/hero-left.jpg
+  imgRight: images/hero-right.jpg
+comment:
+  handler: 'utterances'
+  disqus:
+    shortname: ''
+  commento:
+    url: ''
+  utterances:
+    repo: "ruiqima/comments"
+    issue-term: "pathname"
+    theme: "eureka"

@@ -1,0 +1,160 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>JavaScript数组操作方法 | RQ MA</title><meta name=generator content="Hugo Eureka 0.8.0"><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null,this.rel='stylesheet'"><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css media=print onload="this.media='all',this.onload=null" crossorigin><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js crossorigin></script><script defer src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="遍历方法 for for(var i = 0 ; i < array.length ; i++){ ... } forEach 和 map forEach array1.forEach((currentValue,index,array2) => { ... }) map map会将return的值组成一个新数组返回，其他的跟forEach一样。 var newMap = array1.map((currentValue,index,array2) => { return...; }) 以下以"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":2,"name":"JavaScript数组操作方法","item":"/zh/posts/js-array/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/js-array/"},"headline":"JavaScript数组操作方法 | RQ MA","datePublished":"2021-04-29T10:22:34+08:00","dateModified":"2021-04-29T10:22:34+08:00","wordCount":2927,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"遍历方法 for for(var i = 0 ; i \u0026lt; array.length ; i\u002b\u002b){ ... } forEach 和 map forEach array1.forEach((currentValue,index,array2) =\u0026gt; { ... }) map map会将return的值组成一个新数组返回，其他的跟forEach一样。 var newMap = array1.map((currentValue,index,array2) =\u0026gt; { return...; }) 以下以"}</script><meta property="og:title" content="JavaScript数组操作方法 | RQ MA"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/js-array/"><meta property="og:description" content="遍历方法 for for(var i = 0 ; i < array.length ; i++){ ... } forEach 和 map forEach array1.forEach((currentValue,index,array2) => { ... }) map map会将return的值组成一个新数组返回，其他的跟forEach一样。 var newMap = array1.map((currentValue,index,array2) => { return...; }) 以下以"><meta property="og:locale" content="zh"><meta property="og:site_name" content="RQ MA"><meta property="article:published_time" content="2021-04-29T10:22:34+08:00"><meta property="article:modified_time" content="2021-04-29T10:22:34+08:00"><meta property="article:section" content="posts"><body class="flex flex-col min-h-screen"><header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm"><div class="w-full max-w-screen-xl mx-auto"><script>let storageColorScheme=localStorage.getItem("lightDarkMode");((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementsByTagName('html')[0].classList.add('dark')</script><nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">RQ MA</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0"><a href=/zh/#about class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 border-transparent mr-4">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 selected-menu-item mr-4">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka" name=Light>浅色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Dark>深色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Auto>自动</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>let element=document.getElementById('lightDarkMode');storageColorScheme==null||storageColorScheme=='Auto'?document.addEventListener('DOMContentLoaded',()=>{window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change',switchDarkMode)}):storageColorScheme=="Light"?(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'sun'),element.firstElementChild.classList.add('fa-sun')):storageColorScheme=="Dark"&&(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'moon'),element.firstElementChild.classList.add('fa-moon')),document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()})</script></div></header><main class="flex-grow pt-16"><div class=pl-scrollbar><div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">JavaScript数组操作方法</h1><div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
+<span>2021-04-29</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
+<span>6分钟阅读时长</span></div></div><div class=content><h2 id=遍历方法>遍历方法</h2><h3 id=for><code>for</code></h3><pre><code class=language-js>for(var i = 0 ; i &lt; array.length ; i++){ ... }
+</code></pre><h3 id=foreach-和-map><code>forEach</code> 和 <code>map</code></h3><p><code>forEach</code></p><pre><code class=language-js>array1.forEach((currentValue,index,array2) =&gt; { ... })
+</code></pre><p><code>map</code><br><code>map</code>会将return的值组成一个新数组返回，其他的跟<code>forEach</code>一样。</p><pre><code class=language-js>var newMap = array1.map((currentValue,index,array2) =&gt; { return...; })
+</code></pre><p>以下以<code>forEach</code>为例进行说明。<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#%E5%A6%82%E6%9E%9C%E6%95%B0%E7%BB%84%E5%9C%A8%E8%BF%AD%E4%BB%A3%E6%97%B6%E8%A2%AB%E4%BF%AE%E6%94%B9%E4%BA%86%EF%BC%8C%E5%88%99%E5%85%B6%E4%BB%96%E5%85%83%E7%B4%A0%E4%BC%9A%E8%A2%AB%E8%B7%B3%E8%BF%87%E3%80%82>Array.prototype.forEach()</a></p><p>参数：<br><code>currentValue</code>：必要，数组中正在处理的当前元素。<br><code>index</code>：可选，数组中正在处理的当前元素的索引。<br><code>array2</code>：可选，<code>forEach()</code>方法正在操作的数组。</p><p>注意：</p><ul><li><strong>只操作被初始化了的值</strong>：如<code>[3,,7]</code>中，空缺单元不会被调用。</li><li><strong>不处理后添加的元素</strong>：遍历范围在第一次<code>callback</code>前就已确定，调用<code>forEach</code>后添加到数组中的项不会被<code>callback</code>访问到。</li><li><strong>不能改变原数组基本类型元素的值</strong>：foreach对基本类型的元素拷贝的是值，对引用类型的元素拷贝的是地址。因此<code>element++</code>改变不了数值类型数组的值，但<code>obj.a=1</code>可以改变引用类型元素的属性值。</li><li><strong>已初始化的数值可以被中途改变(forEach)</strong>：如果已经存在的值被改变，<code>callback</code>调用的值的遍历到他们那一刻的值。</li><li><strong>删除元素会导致后面元素前移</strong>：<code>forEach()</code>不会在迭代之前创建数组副本：如在迭代过程中删除一个元素会导致所有剩下的项上移一个位置，因此会有元素被跳过。</li><li><strong>不能在所有元素都传递给调用函数前终止遍历</strong>：<code>return</code>和<code>break</code>不能使循环退出。可以通过抛出异常退出。<code>return</code>只能终止本次调用。</li></ul><h3 id=forof><code>for...of</code></h3><pre><code class=language-js>for(variable of iterable){ ... }
+</code></pre><p>参数：<br><code>variable</code>: 在每次迭代中，将不同属性的值分配给变量。<br><code>iterable</code>：被迭代枚举其属性的对象。</p><p>可迭代对象有：<code>Array</code>，<code>Map</code>，<code>Set</code>，<code>String</code>，<code>TypedArray</code>，<code>arguments</code>对象等。</p><p><strong>迭代<code>String</code></strong><br>variable的值是其中每一个字符的值。</p><pre><code class=language-js>let iterable = &quot;boo&quot;;
+
+for (let value of iterable) {
+  console.log(value);
+}
+// &quot;b&quot;
+// &quot;o&quot;
+// &quot;o&quot;
+</code></pre><p><strong>迭代<code>Map</code></strong></p><pre><code class=language-js>let iterable = new Map([[&quot;a&quot;, 1], [&quot;b&quot;, 2], [&quot;c&quot;, 3]]);
+
+for (let entry of iterable) {
+  console.log(entry);
+}
+// [&quot;a&quot;, 1]
+// [&quot;b&quot;, 2]
+// [&quot;c&quot;, 3]
+
+for (let [key, value] of iterable) {
+  console.log(value);
+}
+// 1
+// 2
+// 3
+</code></pre><p><strong>迭代<code>Set</code></strong></p><pre><code class=language-js>let iterable = new Set([1, 1, 2, 2, 3, 3]);
+
+for (let value of iterable) {
+  console.log(value);
+}
+// 1
+// 2
+// 3
+</code></pre><p><strong>迭代<code>arguments</code>对象</strong></p><pre><code class=language-js>(function() {
+  for (let argument of arguments) {
+    console.log(argument);
+  }
+})(1, 2, 3);
+// 1
+// 2
+// 3
+</code></pre><p><strong>关闭迭代器的方法</strong></p><p>由<code>break</code>,<code>throw</code>,<code>continue</code>或<code>return</code>终止。</p><h3 id=其他>其他</h3><ul><li><code>for...in</code>是为遍历对象属性而构建的，不建议与数组一起使用。 <a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...in>->这里</a></li><li><code>for...of</code>与<code>for...in</code>的区别：<code>for...in</code>以任意顺序迭代对象的可枚举属性，包括自身属性和继承来的属性；<code>for...of</code>遍历可迭代对象定义要迭代的数据，不会包括继承来的属性。<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of>->这里</a></li></ul><h2 id=增删改查方法>增删改查方法</h2><h2 id=concatelement1--elementn---合并数组><code>concat(element1, ..., elementN)</code> - 合并数组</h2><p>用于合并两个或多个数组。此方法不会更改现有数组，而是<strong>返回一个新数组</strong>。</p><pre><code class=language-js>var arr3 = arr1.concat(arr2);
+var arr3 = arr1.concat(arr2, arr0,...);
+var arr3 = arr1.concat(value1, value2,...);
+</code></pre><p>参数<br><code>valueN</code>：数组和/或值，将被合并到一个新的数组中。如果省略了所有<code>valueN</code>参数，则<code>concat</code>会返回调用此方法的现存数组的一个浅拷贝。</p><ul><li>浅拷贝，原始数组和新数组都引用相同的对象。如果引用的对象被修改，则更改对于新数组和原始数组都是可见的。</li><li>数据类型如字符串，数字和布尔（不是String，Number 和 Boolean 对象）：concat将字符串和数字的值复制到新数组中。</li></ul><p><strong><code>concat</code>不会递归到嵌套数组中，只打开一层数组</strong></p><pre><code class=language-js>var alpha = ['a', 'b', 'c'];
+var alphaNumeric = alpha.concat(1, [2, 3]);
+console.log(alphaNumeric);
+// result in ['a', 'b', 'c', 1, 2, 3]
+
+// 合并嵌套数组（1）
+// 传入的参数会被看成一个number和一个array，array会被打开一次
+var alpha = ['a', 'b', 'c'];
+var alphaNumeric = alpha.concat(1, [2, 3, [4]]);
+console.log(alphaNumeric);
+// result in ['a', 'b', 'c', 1, 2, 3, [4]]
+
+// 合并嵌套数组（2）
+var alpha = ['a', 'b', 'c'];
+var alphaNumeric = alpha.concat([1, [2, 3]]);
+console.log(alphaNumeric);
+// result in ['a', 'b', 'c', 1, [2, 3]]
+</code></pre><h3 id=joinseperator---将元素连接成字符串><code>join([seperator])</code> - 将元素连接成字符串</h3><p>将一个数组（或一个类数组对象）的所有元素连接成一个字符串并<strong>返回这个字符串</strong>。使用<code>,</code>分隔符连接。</p><pre><code class=language-js>var result = elements.join();
+var result = elements.join('');
+var result = elements.join('-');
+</code></pre><pre><code class=language-js>const elements = ['Fire', 'Air', 'Water'];
+
+console.log(elements.join());
+// expected output: &quot;Fire,Air,Water&quot;
+
+console.log(elements.join(''));
+// expected output: &quot;FireAirWater&quot;
+
+console.log(elements.join('-'));
+// expected output: &quot;Fire-Air-Water&quot;
+</code></pre><p>如果<code>elements</code>的<code>length</code>为0，则返回空字符串。</p><h3 id=push-和-unshift><code>push()</code> 和 <code>unshift()</code></h3><p><code>push()</code>将一个或多个元素添加到数组的末尾，并<strong>返回该数组的新长度</strong>。</p><pre><code class=language-js>var length = array.push(element1, ..., elementN);
+</code></pre><p><code>unshift()</code>将一个或多个元素添加到数组的开头，并返回该数组的新长度</p><pre><code class=language-js>var length = array.unshift(element1, ..., elementN)
+</code></pre><h3 id=pop-和-shift><code>pop()</code> 和 <code>shift()</code></h3><p><code>pop()</code>从数组中删除最后一个元素，并<strong>返回该元素的值</strong>。</p><pre><code class=language-js>var value = array.pop();
+</code></pre><p><code>shift()</code>从数组中删除第一个元素，并<strong>返回该元素的值</strong>。</p><pre><code class=language-js>var value = array.shift();
+</code></pre><h3 id=slice---截取部分数组><code>slice()</code> - 截取部分数组</h3><p><strong>返回一个新的数组对象</strong>，这一对象是一个由 begin 和 end 决定的原数组的<strong>浅拷贝</strong>（包括 begin，不包括end）。<strong>原始数组不会被改变。</strong></p><pre><code class=language-js>var newArray = array.slice([begin[, end]])
+</code></pre><p>参数：<br><code>begin</code>：可选，提取起始处的索引，从该索引开始提取原数组元素。</p><ul><li>如果省略则从索引为0开始；</li><li>如果超出原数组的索引范围，则会返回空数组。</li><li>如果该参数为负数，则表示从原数组中的倒数第几个元素开始提取。</li></ul><p><code>end</code>：可选，提取终止处的索引（从 0 开始），在该索引处结束提取原数组元素。包含<code>begin</code>，但不包含<code>end</code>。</p><ul><li>如果省略，则 slice 会一直提取到原数组末尾。</li><li>如果大于数组的长度，slice 也会一直提取到原数组末尾。</li><li>如果该参数为负数， 则它表示在原数组中的倒数第几个元素结束抽取。</li></ul><h3 id=splice---删除或替换部分元素><code>splice()</code> - 删除或替换部分元素</h3><p>通过删除或替换现有元素或者原地添加新的元素来修改数组,并<strong>返回一个由被删除的元素组成的数组。此方法会改变原数组。</strong></p><pre><code class=language-js>var deletedElements = array.splice(start, deleteCount, item1,..., itemN)
+</code></pre><p>参数：<br><code>start</code>；指定修改的开始位置（从0计数）。<br><code>deleteCount</code>：表示要移除的数组元素的个数。如果 deleteCount 是 0 或者负数，则不移除元素。这种情况下，至少应添加一个新元素。<br><code>item</code>：要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。</p><h2 id=排序>排序</h2><h3 id=sort><code>sort()</code></h3><pre><code class=language-js>array.sort([compareFunction])
+</code></pre><p>参数：<br><code>compareFunction</code>：用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的各个字符的Unicode位点进行排序。
+<code>firstEl</code>：第一个用于比较的元素。
+<code>secondEl</code>：第二个用于比较的元素。</p><p>默认升序。
+比较函数结果&lt;0时，a排在b之前；=0时，相对位置不变；>0时，a排在b之后。</p><p>比较函数格式：</p><pre><code class=language-js>function compare(a, b) {
+  if (a &lt; b ) {         
+    return -1;
+  }
+  if (a &gt; b ) {
+    return 1;
+  }
+  return 0;
+}
+
+// 或
+
+function compareNumbers(a, b) {
+  return a - b;
+}
+</code></pre><h3 id=reverse><code>reverse()</code></h3><p>颠倒数组中元素的顺序。返回的是颠倒后的数组，会改变原数组。</p><pre><code class=language-js>array.reverse()
+</code></pre><h2 id=查找>查找</h2><h3 id=indexofelement-和-lastindexofelement><code>indexOf(element)</code> 和 <code>lastIndexOf(element)</code></h3><p><code>indexOf(element)</code>
+返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。</p><pre><code class=language-js>arr.indexOf(searchElement[, fromIndex])
+</code></pre><p><code>lastIndexOf(element)</code><br>返回指定元素在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从<code>fromIndex</code>处开始。</p><pre><code class=language-js>arr.lastIndexOf(searchElement[, fromIndex])
+</code></pre><h3 id=findfunc和findindexfunc><code>find(func..)</code>和<code>findIndex(func..)</code></h3><p><code>find(func..)</code>
+返回第一个满足测试函数的元素值。</p><pre><code class=language-js>// Arrow function
+arr.find((element[, index[, array]]) =&gt; { ... } )
+
+// Callback function
+arr.find(callbackFn[, thisArg])
+</code></pre><pre><code class=language-js>const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element =&gt; element &gt; 10);
+
+console.log(found);
+// expected output: 12
+</code></pre><p><code>findIndex(func..)</code><br>返回第一个满足测试函数的元素的<code>index</code>。</p><pre><code class=language-js>// Arrow function
+arr.findIndex((element[, index[, array]]) =&gt; { ... } )
+
+// Callback function
+arr.findIndex(callbackFn[, thisArg])
+</code></pre><pre><code class=language-js>const array1 = [5, 12, 8, 130, 44];
+
+const isLargeNumber = (element) =&gt; element &gt; 13;
+
+console.log(array1.findIndex(isLargeNumber));
+// expected output: 3
+</code></pre><h2 id=判断元素>判断元素</h2><h3 id=includessearchelement><code>includes(searchElement)</code></h3><p><code>arr.includes(searchElement[, fromIndex])</code></p><p>判断数组是否包含指定元素。</p><h3 id=somefunc和everyfunc><code>some(func..)</code>和<code>every(func..)</code></h3><p><code>every(func..)</code><br>返回boolean类型值。检测是否数组中的所有元素都满足测试函数。</p><pre><code class=language-js>// Arrow function
+arr.every((element[, index[, array]]) =&gt; { ... } )
+
+// Callback function
+arr.every(callbackFn[, thisArg])
+</code></pre><p><code>some(func..)</code><br>返回boolean类型值。检测数组中是否有元素满足测试函数。</p><pre><code class=language-js>// Arrow function
+arr.some((element[, index[, array]]) =&gt; { ... } )
+
+// Callback function
+arr.some(callbackFn[, thisArg])
+</code></pre><h2 id=生成新数组>生成新数组</h2><h3 id=mapfunc><code>map(func..)</code></h3><p>生成一个由每个元素经处理函数处理后得出的结果按顺序组成的数组。结果中不会删除重复的元素。</p><pre><code class=language-js>// Arrow function
+arr.map((element[, index[, array]]) =&gt; { ... } )
+
+// Callback function
+arr.map(callbackFn[, thisArg])
+</code></pre><pre><code class=language-js>const array1 = [1, 4, 9, 16];
+
+// pass a function to map
+const map1 = array1.map(x =&gt; x * 2);
+
+console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+</code></pre></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/js-sort/ class=block>JavaScript排序算法</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/appium-install-opencv4nodejs/ class=block>安装Opencv4nodejs的坑</a></div></div><script id=utterances src=https://utteranc.es/client.js issue-term=pathname repo=ruiqima/comments theme=preferred-color-scheme crossorigin=anonymous async></script><script>((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementById('utterances').setAttribute('theme','github-dark')</script></div><div class=col-span-2><div class="sticky top-16 z-10 hidden lg:block px-6 py-4 bg-primary-bg"><span class="text-lg font-semibold">本页内容</span></div><div class="sticky-toc hidden lg:block px-6 pb-6"><nav id=TableOfContents><ul><li><a href=#遍历方法>遍历方法</a><ul><li><a href=#for><code>for</code></a></li><li><a href=#foreach-和-map><code>forEach</code> 和 <code>map</code></a></li><li><a href=#forof><code>for...of</code></a></li><li><a href=#其他>其他</a></li></ul></li><li><a href=#增删改查方法>增删改查方法</a></li><li><a href=#concatelement1--elementn---合并数组><code>concat(element1, ..., elementN)</code> - 合并数组</a><ul><li><a href=#joinseperator---将元素连接成字符串><code>join([seperator])</code> - 将元素连接成字符串</a></li><li><a href=#push-和-unshift><code>push()</code> 和 <code>unshift()</code></a></li><li><a href=#pop-和-shift><code>pop()</code> 和 <code>shift()</code></a></li><li><a href=#slice---截取部分数组><code>slice()</code> - 截取部分数组</a></li><li><a href=#splice---删除或替换部分元素><code>splice()</code> - 删除或替换部分元素</a></li></ul></li><li><a href=#排序>排序</a><ul><li><a href=#sort><code>sort()</code></a></li><li><a href=#reverse><code>reverse()</code></a></li></ul></li><li><a href=#查找>查找</a><ul><li><a href=#indexofelement-和-lastindexofelement><code>indexOf(element)</code> 和 <code>lastIndexOf(element)</code></a></li><li><a href=#findfunc和findindexfunc><code>find(func..)</code>和<code>findIndex(func..)</code></a></li></ul></li><li><a href=#判断元素>判断元素</a><ul><li><a href=#includessearchelement><code>includes(searchElement)</code></a></li><li><a href=#somefunc和everyfunc><code>some(func..)</code>和<code>every(func..)</code></a></li></ul></li><li><a href=#生成新数组>生成新数组</a><ul><li><a href=#mapfunc><code>map(func..)</code></a></li></ul></li></ul></nav></div><script>window.addEventListener('DOMContentLoaded',()=>{enableStickyToc()})</script></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer class=pl-scrollbar><div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b"><p class="text-sm text-tertiary-text">&copy; 2021 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></div></div></footer></body></html>

@@ -1,16 +1,20 @@
-+++
-title = "script加载方式以及元素属性"
-description = ""
-toc = true
-authors = ["mrq"]
-tags = ["JavaScript"]
-categories = ["JavaScript进阶之路"]
-series = []
-date =  "2020-04-23T15:05:39+08:00"
-lastmod = "2020-04-23T15:05:39+08:00"
-featuredImage = ""
-draft = false
-+++
+---
+title: script加载方式以及元素属性
+description: ''
+toc: true
+authors:
+  - mrq
+tags:
+  - JavaScript
+categories:
+  - JavaScript进阶之路
+series: []
+date: '2020-04-23T15:05:39+08:00'
+lastmod: '2020-04-23T15:05:39+08:00'
+featuredImage: ''
+draft: false
+
+---
 
 ## 解释器对&#60;script&#62;中内容的加载方式  
 

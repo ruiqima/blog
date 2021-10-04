@@ -1,0 +1,61 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>vue-cli3 跨域配置-含示例 | RQ MA</title><meta name=generator content="Hugo Eureka 0.8.0"><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null,this.rel='stylesheet'"><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css media=print onload="this.media='all',this.onload=null" crossorigin><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js crossorigin></script><script defer src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="安装axios 在项目目录下运行：cnpm install --save axios vue-axios. 示例 以在main.js中连接后台为例，其他页面在axios前加上this.即可。 main.js import Vue from 'vue' //重要！！"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":2,"name":"vue-cli3 跨域配置-含示例","item":"/zh/posts/vue-cli3-cross-domain-configuration/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/vue-cli3-cross-domain-configuration/"},"headline":"vue-cli3 跨域配置-含示例 | RQ MA","datePublished":"2020-03-12T14:18:48+08:00","dateModified":"2020-03-12T14:18:48+08:00","wordCount":422,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"安装axios 在项目目录下运行：cnpm install --save axios vue-axios. 示例 以在main.js中连接后台为例，其他页面在axios前加上this.即可。 main.js import Vue from \u0027vue\u0027 \/\/重要！！"}</script><meta property="og:title" content="vue-cli3 跨域配置-含示例 | RQ MA"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/vue-cli3-cross-domain-configuration/"><meta property="og:description" content="安装axios 在项目目录下运行：cnpm install --save axios vue-axios. 示例 以在main.js中连接后台为例，其他页面在axios前加上this.即可。 main.js import Vue from 'vue' //重要！！"><meta property="og:locale" content="zh"><meta property="og:site_name" content="RQ MA"><meta property="article:published_time" content="2020-03-12T14:18:48+08:00"><meta property="article:modified_time" content="2020-03-12T14:18:48+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Vue"><meta property="og:see_also" content="/zh/posts/vue-environment-building-configuration-eslint-and-prettier/"><body class="flex flex-col min-h-screen"><header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm"><div class="w-full max-w-screen-xl mx-auto"><script>let storageColorScheme=localStorage.getItem("lightDarkMode");((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementsByTagName('html')[0].classList.add('dark')</script><nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">RQ MA</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0"><a href=/zh/#about class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 border-transparent mr-4">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 selected-menu-item mr-4">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka" name=Light>浅色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Dark>深色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Auto>自动</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>let element=document.getElementById('lightDarkMode');storageColorScheme==null||storageColorScheme=='Auto'?document.addEventListener('DOMContentLoaded',()=>{window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change',switchDarkMode)}):storageColorScheme=="Light"?(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'sun'),element.firstElementChild.classList.add('fa-sun')):storageColorScheme=="Dark"&&(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'moon'),element.firstElementChild.classList.add('fa-moon')),document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()})</script></div></header><main class="flex-grow pt-16"><div class=pl-scrollbar><div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">vue-cli3 跨域配置-含示例</h1><div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
+<span>2020-03-12</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
+<span>1分钟阅读时长</span></div></div><div class=content><h2 id=安装axios>安装axios</h2><p>在项目目录下运行：<code>cnpm install --save axios vue-axios</code>.</p><h2 id=示例>示例</h2><p>以在<code>main.js</code>中连接后台为例，其他页面在<code>axios</code>前加上<code>this.</code>即可。</p><h3 id=mainjs>main.js</h3><pre><code class=language-javascript>import Vue from 'vue'   //重要！！！
+import axios from 'axios'   //重要！！！
+import VueAxios from 'vue-axios'    //重要！！！
+import App from './App.vue'
+
+Vue.config.productionTip = false
+
+Vue.use(VueAxios, axios)    //重要！！！
+
+new Vue({
+  render: h =&gt; h(App),
+  router
+}).$mount('#app')
+
+//************************************重要！！！
+axios({ //如果是在其他页面，使用this.axios
+  method: 'post',
+  url: '/api/user', //  &quot;/api&quot;很重要！！！！
+  data: {
+    username: 'xxxxx',
+    password: 'xxxxx'
+  }
+})
+  .then(function(response) {
+    alert(response)
+  })
+  .catch(function(error) {
+    alert(error)
+  })
+</code></pre><p><code>url: '/api/user'</code>中，<code>/api</code>是在<code>vue.config.js</code>中配置的（详见后续），<code>/user</code>是接口地址，更多可参考<a href=https://github.com/axios/axios>官方文档</a>。</p><h3 id=vueconfigjs>vue.config.js</h3><p>文件内容应该是这个格式：</p><pre><code class=language-javascript>module.exports = {
+    ...
+}
+</code></pre><p>修改如下：</p><pre><code class=language-javascript>module.exports = {
+devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000',    //API服务器的地址
+        ws: true,   //代理websockets
+        changeOrigin: true, // cnpm 虚拟的站点需要更管origin
+        pathRewrite: {
+          //重写路径 比如'/api/aaa/ccc'重写为'/aaa/ccc'
+          '^/api': ''
+        }
+      }
+    }
+  }
+}
+</code></pre></div><div class=my-4><a href=/zh/tags/vue/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Vue</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a>
+<a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a>
+<a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/js-load-script/ class=block>script加载方式以及元素属性</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/vue-environment-building-configuration-eslint-and-prettier/ class=block>vscode vue环境搭建+配置eslint和prettier</a></div></div><script id=utterances src=https://utteranc.es/client.js issue-term=pathname repo=ruiqima/comments theme=preferred-color-scheme crossorigin=anonymous async></script><script>((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementById('utterances').setAttribute('theme','github-dark')</script></div><div class=col-span-2><div class="sticky top-16 z-10 hidden lg:block px-6 py-4 bg-primary-bg"><span class="text-lg font-semibold">本页内容</span></div><div class="sticky-toc hidden lg:block px-6 pb-6"><nav id=TableOfContents><ul><li><a href=#安装axios>安装axios</a></li><li><a href=#示例>示例</a><ul><li><a href=#mainjs>main.js</a></li><li><a href=#vueconfigjs>vue.config.js</a></li></ul></li></ul></nav></div><script>window.addEventListener('DOMContentLoaded',()=>{enableStickyToc()})</script></div><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">相关</h2><div class=content><a href=/zh/posts/vue-environment-building-configuration-eslint-and-prettier/>vscode vue环境搭建+配置eslint和prettier</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer class=pl-scrollbar><div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b"><p class="text-sm text-tertiary-text">&copy; 2021 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></div></div></footer></body></html>

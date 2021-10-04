@@ -1,16 +1,19 @@
-+++
-title = "vscode vue环境搭建+配置eslint和prettier"
-description = ""
-toc = true
-authors = ["mrq"]
-tags = ["Vue"]
-categories = []
-series = []
-date =  "2020-03-04T17:35:05+08:00"
-lastmod = "2020-03-04T17:35:05+08:00"
-featuredImage = ""
-draft = false
-+++
+---
+title: vscode vue环境搭建+配置eslint和prettier
+description: ''
+toc: true
+authors:
+  - mrq
+tags:
+  - Vue
+categories: []
+series: []
+date: '2020-03-04T17:35:05+08:00'
+lastmod: '2020-03-04T17:35:05+08:00'
+featuredImage: ''
+draft: false
+
+---
 
 <!-- TOC -->
 

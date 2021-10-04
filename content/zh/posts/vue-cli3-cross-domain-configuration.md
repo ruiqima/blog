@@ -1,16 +1,18 @@
-+++
-title = "vue-cli3 跨域配置-含示例"
-description = ""
-toc = true
-authors = ["mrq"]
-tags = ["Vue"]
-categories = []
-series = []
-date =  "2020-03-12T14:18:48+08:00"
-lastmod = "2020-03-12T14:18:48+08:00"
-featuredImage = ""
-draft = false
-+++
+---
+title: vue-cli3 跨域配置-含示例
+description: ''
+toc: true
+authors:
+  - mrq
+tags:
+  - Vue
+categories: []
+series: []
+date: '2020-03-12T14:18:48+08:00'
+lastmod: '2020-03-12T14:18:48+08:00'
+featuredImage: ''
+draft: false
+---
 
 ## 安装axios  
 

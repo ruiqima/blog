@@ -1,0 +1,26 @@
+baseURL: /
+title: RQ MA
+theme: eureka
+paginate: 10
+copyright: '&copy; {year} Ruiqi Ma'
+enableEmoji: true
+enableGitInfo: false
+summaryLength: 75
+defaultContentLanguage: zh
+hasCJKLanguage: true
+defaultContentLanguageInSubdir: true
+markup:
+  highlight:
+    codeFences: false
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 6
+    ordered: false
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+  author: authors
+build:
+  useResourceCacheWhen: always

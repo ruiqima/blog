@@ -1,16 +1,19 @@
-+++
-title = "导致页面白屏的原因"
-description = ""
-toc = true
-authors = ["mrq"]
-tags = ["Frontend"]
-categories = []
-series = []
-date =  " 2020-04-20T15:05:27+08:00"
-lastmod = " 2020-04-20T15:05:27+08:00"
-featuredImage = ""
-draft = false
-+++
+---
+title: 导致页面白屏的原因
+description: ''
+toc: true
+authors:
+  - mrq
+tags:
+  - Frontend
+categories: []
+series: []
+date: ' 2020-04-20T15:05:27+08:00'
+lastmod: ' 2020-04-20T15:05:27+08:00'
+featuredImage: ''
+draft: false
+
+---
 
 ## script脚本阻塞DOM渲染
 

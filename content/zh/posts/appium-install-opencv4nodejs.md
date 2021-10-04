@@ -1,16 +1,21 @@
-+++
-title = "安装Opencv4nodejs的坑"
-description = ""
-toc = true
-authors = ["mrq"]
-tags = ["Appium", "opencv4nodejs", "Installation"]
-categories = ["脚本开发"]
-series = []
-date =  "2020-11-12T15:46:05+08:00"
-lastmod = "2020-11-12T15:46:05+08:00"
-featuredImage = ""
-draft = false
-+++
+---
+title: 安装Opencv4nodejs的坑
+description: ''
+toc: true
+authors:
+  - mrq
+tags:
+  - Appium
+  - opencv4nodejs
+  - Installation
+categories:
+  - 脚本开发
+series: []
+date: '2020-11-12T15:46:05+08:00'
+lastmod: '2020-11-12T15:46:05+08:00'
+featuredImage: ''
+draft: false
+---
 
 <!-- TOC -->
 

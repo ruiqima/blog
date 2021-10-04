@@ -1,0 +1,111 @@
+<!doctype html><html lang=zh><meta charset=utf-8><meta name=viewport content="width=device-width"><title>游戏脚本-自动生产 Android Python Appium | RQ MA</title><meta name=generator content="Hugo Eureka 0.8.0"><link rel=stylesheet href=/css/eureka.min.css><script defer src=/js/eureka.min.js></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" as=style onload="this.onload=null,this.rel='stylesheet'"><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css media=print onload="this.media='all',this.onload=null" crossorigin><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js crossorigin></script><script defer src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin></script><link rel=icon type=image/png sizes=32x32 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=/images/icon_hufe282a50f3886d4604387e18d88a80ad_43066_180x180_fill_box_center_2.png><meta name=description content="整体思路 第一步：自动打开游戏 问题：Appium打开app会清空用户登录信息 解决路径 Appium Desired Capabilities 第二步：swipe界面到水井所在位置 第三步：点击水井进行生产 1."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"/zh/posts/"},{"@type":"ListItem","position":2,"name":"游戏脚本-自动生产 Android Python Appium","item":"/zh/posts/appium-jiangnan-script-auto-well/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"/zh/posts/appium-jiangnan-script-auto-well/"},"headline":"游戏脚本-自动生产 Android Python Appium | RQ MA","datePublished":"2020-11-07T21:22:22+08:00","dateModified":"2020-11-18T21:22:22+08:00","wordCount":3489,"author":{"@type":"Person","name":["mrq"]},"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"/images/icon.png"}},"description":"整体思路 第一步：自动打开游戏 问题：Appium打开app会清空用户登录信息 解决路径 Appium Desired Capabilities 第二步：swipe界面到水井所在位置 第三步：点击水井进行生产 1."}</script><meta property="og:title" content="游戏脚本-自动生产 Android Python Appium | RQ MA"><meta property="og:type" content="article"><meta property="og:image" content="/images/icon.png"><meta property="og:url" content="/zh/posts/appium-jiangnan-script-auto-well/"><meta property="og:description" content="整体思路 第一步：自动打开游戏 问题：Appium打开app会清空用户登录信息 解决路径 Appium Desired Capabilities 第二步：swipe界面到水井所在位置 第三步：点击水井进行生产 1."><meta property="og:locale" content="zh"><meta property="og:site_name" content="RQ MA"><meta property="article:published_time" content="2020-11-07T21:22:22+08:00"><meta property="article:modified_time" content="2020-11-18T21:22:22+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Android"><meta property="article:tag" content="Python"><meta property="article:tag" content="Appium"><meta property="og:see_also" content="/zh/posts/appium-python/"><body class="flex flex-col min-h-screen"><header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm"><div class="w-full max-w-screen-xl mx-auto"><script>let storageColorScheme=localStorage.getItem("lightDarkMode");((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementsByTagName('html')[0].classList.add('dark')</script><nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0"><a href=/zh class="mr-6 text-primary-text text-xl font-bold">RQ MA</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0"><a href=/zh/#about class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 border-transparent mr-4">About</a>
+<a href=/zh/posts/ class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2 selected-menu-item mr-4">Posts</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka" name=Light>浅色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Dark>深色</span>
+<span class="px-4 py-1 hover:text-eureka" name=Auto>自动</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>let element=document.getElementById('lightDarkMode');storageColorScheme==null||storageColorScheme=='Auto'?document.addEventListener('DOMContentLoaded',()=>{window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change',switchDarkMode)}):storageColorScheme=="Light"?(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'sun'),element.firstElementChild.classList.add('fa-sun')):storageColorScheme=="Dark"&&(element.firstElementChild.classList.remove('fa-adjust'),element.firstElementChild.setAttribute("data-icon",'moon'),element.firstElementChild.classList.add('fa-moon')),document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()})</script></div></header><main class="flex-grow pt-16"><div class=pl-scrollbar><div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">游戏脚本-自动生产 Android Python Appium</h1><div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
+<span>2020-11-07</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
+<span>7分钟阅读时长</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
+<a href=/zh/categories/%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91/ class=hover:text-eureka>脚本开发</a></div></div><div class=content><ul><li><a href=#%E6%95%B4%E4%BD%93%E6%80%9D%E8%B7%AF>整体思路</a></li><li><a href=#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E6%B8%B8%E6%88%8F>第一步：自动打开游戏</a><ul><li><a href=#%E9%97%AE%E9%A2%98appium%E6%89%93%E5%BC%80app%E4%BC%9A%E6%B8%85%E7%A9%BA%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF>问题：Appium打开app会清空用户登录信息</a><ul><li><a href=#%E8%A7%A3%E5%86%B3%E8%B7%AF%E5%BE%84>解决路径</a></li><li><a href=#appium-desired-capabilities>Appium Desired Capabilities</a></li></ul></li></ul></li><li><a href=#%E7%AC%AC%E4%BA%8C%E6%AD%A5swipe%E7%95%8C%E9%9D%A2%E5%88%B0%E6%B0%B4%E4%BA%95%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE>第二步：swipe界面到水井所在位置</a></li><li><a href=#%E7%AC%AC%E4%B8%89%E6%AD%A5%E7%82%B9%E5%87%BB%E6%B0%B4%E4%BA%95%E8%BF%9B%E8%A1%8C%E7%94%9F%E4%BA%A7>第三步：点击水井进行生产</a><ul><li><a href=#1-%E7%82%B9%E5%87%BB%E6%B0%B4%E4%BA%95>1. 点击水井</a></li><li><a href=#2-%E9%AA%8C%E8%AF%81%E6%B0%B4%E4%BA%95%E6%98%AF%E5%90%A6%E7%82%B9%E5%87%BB%E6%AD%A3%E7%A1%AE>2. 验证水井是否点击正确</a></li><li><a href=#3-%E9%80%89%E6%8B%A9%E5%B7%A5%E4%BA%BA%E8%B4%9F%E8%B4%A3%E4%BA%BA%E8%BF%9B%E8%A1%8C%E7%94%9F%E4%BA%A7>3. 选择工人/负责人进行生产</a></li><li><a href=#4-%E7%BB%BC%E5%90%88>4. 综合</a></li><li><a href=#5-%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E7%94%9F%E4%BA%A7%E5%87%BD%E6%95%B0>5. 循环调用生产函数</a></li></ul></li><li><a href=#%E9%97%AE%E9%A2%98>问题</a></li></ul><h2 id=整体思路>整体思路</h2><p>开发这个脚本的目的是为了可以自动点击水井、生产，不断地进行这个操作。目前的思路是：</p><ul><li>自动打开游戏</li><li>move屏幕to水井所在位置（水井并不在打开app的初始界面中）</li><li>图像识别水井（可能有多个），保存这些水井的位置</li><li>loop：<ul><li>for每一个水井，loop：<ul><li>点击水井</li><li>判断界面中是否出现“水井”两字以验证是否点击正确，若有，则识别“普通水”三字并点击；若无，输出log，返回</li><li>若界面中识别出“负责人”三字，则识别“直接开始”四字，点击下方一格距离的位置（即点击第一个负责人）；若未出现“负责人”三字，继续循环</li></ul></li><li>等待三分钟</li></ul></li><li>手动退出或设置loop最大时长退出</li></ul><p>请确保上次退出时是在应天府，所有识别都是基于应天府的。请确保税课司正在工作，没有设置收钱操作。</p><h2 id=第一步自动打开游戏>第一步：自动打开游戏</h2><p>详细的关于这些属性的值如何获取，见文章 <em>vscode+python+appium安装及简单示例</em>。</p><pre><code class=language-python>from appium import webdriver
+from appium.webdriver.common.touch_action import TouchAction
+import time
+
+desired_caps = {}
+desired_caps['platformName'] = 'Android'
+desired_caps['platformVersion'] = '10.0'
+desired_caps['deviceName'] = 'xxxxxxxxxxxxxxxx'
+desired_caps['appPackage'] = 'com.cis.jiangnan.taptap'
+desired_caps['appActivity'] = 'com.cis.cisframework.CISActivity'
+desired_caps['newCommandTimeout']= '100000'
+desired_caps['noReset'] = True
+
+driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+time.sleep(20)
+</code></pre><p>设置<code>time.sleep(20)</code>的原因是打开app需要时间，后续操作需要等待app的打开。</p><h3 id=问题appium打开app会清空用户登录信息>问题：Appium打开app会清空用户登录信息</h3><p>问题描述：手动打开app可以正常直接进入，使用appium打开app每次都会提示更新并要求重新登录。且每次被appium打开后的首次手动打开也出现上述步骤。</p><h4 id=解决路径>解决路径</h4><p>搜索到问题<a href=https://testerhome.com/topics/9031>[求助] Appium 打开 App 会自动清除之前登录的帐号信息</a><br>尝试使用<code>desired_caps['noReset'] = True</code>
+成功解决问题，app可以正常打开。</p><h4 id=appium-desired-capabilities>Appium Desired Capabilities</h4><p>Desired Capabilities是JSON对象，键值对形式。每次新的自动会话 automation session开始时，Appium Client（比如说我们的.py文件）都要向Server（Appium）发送Desired Capabilities。<br><strong>常用的Capabilities-Android和iOS平台通用</strong></p><table><thead><tr><th>Capability</th><th>描述</th></tr></thead><tbody><tr><td><code>automationName</code></td><td>选择哪个<code>automation engine</code>。<code>Appium</code> (default)/<code>UiAutomator2</code>/<code>Espresso</code>/<code>UiAutomator1</code> for Android/<code>XCUITest</code> or <code>Instruments</code> for iOS</td></tr><tr><td><code>platformName</code></td><td>哪个操作系统。<code>iOS</code>/<code>Android</code>/<code>FirefoxOS</code></td></tr><tr><td><code>platformVersion</code></td><td>系统版本号。eg. 10.1</td></tr><tr><td><code>app</code></td><td><code>.apk</code>等的绝对路径或者一个http URL。对于<code>Android</code>，如果已经指定了<code>appPackage</code>和<code>appActivity</code>，则不需要填写。</td></tr><tr><td><code>newCommandTimeout</code></td><td>Appium将等待Client发出新命令的时间（以秒为单位），超出时间无新命令将假设客户端退出并结束会话</td></tr><tr><td><code>noReset</code></td><td>在此会话之前，请勿重置应用程序状态。详细见<a href=http://appium.io/docs/en/writing-running-appium/other/reset-strategies/index.html>Reset Strategies</a>.</td></tr><tr><td><code>eventTimings</code></td><td>启用或禁用各种Appium内部事件的计时报告（例如，每个命令的开始和结束等）。默认为false。要启用，请使用true。这些计时将以事件属性的形式作为查询当前会话的响应。详细见<a href=http://appium.io/docs/en/advanced-concepts/event-timings/index.html>Appium Event Timing</a>.</td></tr></tbody></table><p><strong>其他常用的Capabilities-仅适用于基于Android的驱动</strong></p><table><thead><tr><th>Capability</th><th>描述</th></tr></thead><tbody><tr><td><code>appActivity</code></td><td>要从package中启动的Android activity的Activity name</td></tr><tr><td><code>appPackage</code></td><td>要运行的Android应用的Java包</td></tr><tr><td><code>adbPort</code></td><td>用于连接到ADB服务器的端口（默认为5037）</td></tr><tr><td><code>unicodeKeyboard</code></td><td>启用Unicode输入，默认为<code>false</code></td></tr><tr><td><code>resetKeyboard</code></td><td>在运行具有<code>unicodeKeyboard</code> capability的Unicode测试之后，将键盘重置为其原始状态。如果单独使用，则忽略。默认为<code>false</code>.</td></tr><tr><td><code>androidScreenshotPath</code></td><td>截图将被放置在的路径。默认为<code>/data/local/tmp</code>.</td></tr></tbody></table><p>更多capabilities详见<a href=http://appium.io/docs/en/writing-running-appium/caps/>Appium Desired Capabilities</a>.</p><h2 id=第二步swipe界面到水井所在位置>第二步：swipe界面到水井所在位置</h2><p>首先可以查看app的窗口大小。</p><pre><code class=language-python>print(driver.get_window_size()) # {'width': 1080, 'height': 2265}
+</code></pre><p>使用<code>swipe</code>移动视图。</p><pre><code class=language-python>driver.swipe(540, 1000, 1050, 1500, 1000) 
+</code></pre><blockquote><p><strong>ActionHelpers.swipe(start_x: int, start_y: int, end_x: int, end_y: int, duration=0) -> ActionHelpers</strong>
+Swipe from one point to another point, for an optional duration.</p><p><em>Args:</em></p><ul><li>start_x: x-coordinate at which to start</li><li>start_y: y-coordinate at which to start</li><li>end_x: x-coordinate at which to stop</li><li>end_y: y-coordinate at which to stop</li><li>duration: time to take the swipe, in ms.</li></ul><p><em>Usage:</em> driver.swipe(100, 100, 100, 400)</p><p><em>eturns:</em> Union[&lsquo;WebDriver&rsquo;, &lsquo;ActionHelpers&rsquo;]: Self instance</p></blockquote><h2 id=第三步点击水井进行生产>第三步：点击水井进行生产</h2><h3 id=1-点击水井>1. 点击水井</h3><p>这一次并没有尝试图像识别找水井的方式。因为我是绝对值移动到这个屏幕位置的，所以每个水井在屏幕上的位置是相对固定的。因此我直接建立了一个保存有水井位置的tuple：</p><pre><code class=language-python>well_pos_tuple = [{'x': 456, 'y': 1384}, {'x': 530, 'y': 1440}, ...]
+
+</code></pre><p>点击每个水井并进行生产的操作可以封装在一个函数中，点击不同水井则给函数不同的参数值即可。定义函数<code>cautiousproduce</code>：</p><pre><code class=language-python>def cautiousproduce(category, pos, check_dir):
+    actionsWell = TouchAction(driver)
+    actionsWell.tap(None, pos['x'], pos['y']).perform()   # 点击
+</code></pre><p>其中<code>category</code>是当前进行生产的类型名称，用于错误输出，如“水井”。
+<code>pos</code>是要点击的位置，在这儿就是tuple中的一个元素。<code>check_dir</code>是下一步要进行验证是否点击正确的图片路径。</p><h3 id=2-验证水井是否点击正确>2. 验证水井是否点击正确</h3><p>但如果没有正确点击水井会怎么办？有的时候的确会出现未正确点击的现象，尽管我现在还没有弄明白是为什么没有点击正确。因此我们需要验证水井是否点击正确，才能继续进行后续的生产操作。</p><p>怎么验证？正确点击水井后会出现选择生产类型的弹框。因此我们验证是否有正确的弹框出现就好了。即，验证屏幕中是否出现“水井”两字。验证图片的路径放在参数<code>check_dir</code>中。识别的函数如下。</p><pre><code class=language-python>el = driver.find_element_by_image(check_dir)
+</code></pre><p>要注意的一点是，如果识别不到，这个函数会直接抛出一个Exception，因此我们需要<code>try ... except ...</code>来handle这种情况。异常处理的具体内容可以参考<a href=https://docs.python.org/zh-cn/3/tutorial/errors.html>python-错误和异常</a>。</p><p>如果不添加异常处理程序且未识别到对应图片，则会有报错：</p><pre><code>raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: An element could not be located on the page using the given search parameters.
+</code></pre><p>这里面展示了异常类型是<code>NoSuchElementException</code>，我们需要处理的就是这个异常。为了识别这个异常类型，我们需要<code>from selenium.common.exceptions import NoSuchElementException</code>。</p><pre><code class=language-python>def cautiousproduce(category, pos, check_dir):
+    global count
+    actionsWell = TouchAction(driver)
+    actionsWell.tap(None, pos['x'], pos['y']).perform()   # 点击
+    time.sleep(0.5)
+    try:
+        # 检查是否正确点击水井，是否识别到下一步图像
+        driver.find_element_by_image(check_dir)
+        # 点击生产第一项
+        # ...
+
+    except NoSuchElementException:
+        print(&quot;Oops~~&quot;+category+&quot;未被正确点击&quot;)
+</code></pre><p>添加了异常处理之后就会报出我们自己定义的语句了！</p><pre><code>(.venv) PS ~&gt; python hello.py
+Oops~~水井未被正确点击
+</code></pre><h3 id=3-选择工人负责人进行生产>3. 选择工人/负责人进行生产</h3><p>正确点击水井之后就可以开始生产啦！因为每次都只生产普通水，弹框在屏幕的位置又是固定的，所以直接给绝对位置进行点击即可。需要变量<code>first_product_pos</code>来存储“普通水”（即第一个选项）的位置。</p><pre><code class=language-python>        # 点击生产第一项
+        actionsProduce = TouchAction(driver)
+        actionsProduce.tap(
+            None, first_product_pos['x'], first_product_pos['y']).perform()
+</code></pre><p>接下来会遇到的问题是，有负责人剩余时需要要负责人进行生产，还需要进行一次点击；而没有剩余的时候直接就开始生产了。因此判断是否有选择负责人的弹框也是一个必要步骤。采用识别是否出现“负责人”三字的方法来判断。同样，注意，也需要进行异常处理。</p><pre><code class=language-python>        # 检查是否需要负责人
+        try:
+            fuzeren = driver.find_element_by_image(fuzeren_dir)
+            actionFuzeren = TouchAction(driver)
+            actionFuzeren.tap(
+                None, furenren_pos['x'], furenren_pos['y']).perform()
+            print('负责人-开始生产'+category)
+        except NoSuchElementException:
+            count = count+1
+            print('工人-开始生产'+category+')
+</code></pre><h3 id=4-综合>4. 综合</h3><p>综合起来，进行一个水井生产操作的函数<code>cautiousproduce</code>如下：</p><pre><code class=language-python>def cautiousproduce(category, pos, check_dir):
+    actionsWell = TouchAction(driver)
+    actionsWell.tap(None, pos['x'], pos['y']).perform()   # 点击
+    time.sleep(0.5)
+    
+    try:
+        # 检查是否正确点击水井，是否识别到下一步图像
+        driver.find_element_by_image(check_dir)
+        # 点击生产第一项
+        actionsProduce = TouchAction(driver)
+        actionsProduce.tap(
+            None, first_product_pos['x'], first_product_pos['y']).perform()
+        time.sleep(0.5)
+
+        # 检查是否需要负责人
+        try:
+            fuzeren = driver.find_element_by_image(fuzeren_dir)
+            actionFuzeren = TouchAction(driver)
+            actionFuzeren.tap(
+                None, furenren_pos['x'], furenren_pos['y']).perform()
+            print('负责人-开始生产'+category)
+        except NoSuchElementException:
+            count = count+1
+            print('工人-开始生产'+category)
+
+    except NoSuchElementException:
+        print(&quot;Oops~~&quot;+category+&quot;未被正确点击&quot;)
+</code></pre><h3 id=5-循环调用生产函数>5. 循环调用生产函数</h3><p>生产函数有了，剩下的就是对每个水井调用这个生产函数，并每隔三分钟（生产时间）调用一次。综合调用函数为：</p><pre><code class=language-python>def producewell(pos_list):
+    for pos in pos_list:
+        cautiousproduce('水井', pos, check_well_dir)
+    global timer
+    timer = threading.Timer(200, producewell, [pos_list])
+    timer.start()
+</code></pre><p>运用了计数器。参考：</p><ul><li><a href=https://blog.51cto.com/huangyg/2367088>Python3-定时任务四种实现方式</a></li><li><a href=https://docs.python.org/2/library/threading.html#timer-objects>16.2.7. Timer Objects</a></li></ul><h2 id=问题>问题</h2><p>这种方法很原始，点击的都是绝对坐标，不灵活。只能很基本地完成我的需求。有几个很大的缺陷待完善，还有一些问题的原因不明确待改善。</p><ol><li><p>图像识别时间过长
+每点击一个水井都要进行两次图像识别的操作，很耗时间。现在的效果是3分07秒才开始了4个水井的生产，很慢。考虑解决方法：只识别第一个水井是否点击正确，后面的水井使用相对一第一个水井的位置点击。只要第一个水井点击成功了，就不会存在后面的水井点击不上的问题。</p></li><li><p>不够灵活
+都使用的是绝对位置。在第二步移动到水井所在位置中还没有想好代替方法，但是在点击每个水井的位置这一点是，可以采用问题1的相对位置的解决方法。</p></li><li><p>对交互的特殊节点把握不准确
+有的时候会点击到别的地方去，这一点我还没有想明白。有的时候水井不是按照tuple元素的顺序进行生产的，这一点也没有想明白。</p></li></ol></div><div class=my-4><a href=/zh/tags/android/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Android</a>
+<a href=/zh/tags/python/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Python</a>
+<a href=/zh/tags/appium/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Appium</a></div><div class=py-2><div class="flex flex-col md:flex-row items-center my-8"><a href=/zh/authors/mrq/ class="w-24 h-24 md:mr-4"><img src=/zh/authors/mrq/avatar.jpg class="w-full bg-primary-bg rounded-full" alt=Avatar></a><div class="w-full md:w-auto mt-4 md:mt-0"><a href=/zh/authors/mrq/ class="block font-bold text-lg pb-1 mb-2 border-b">Ruiqi</a>
+<span class="block pb-2">有梦想，有追求，有吃的，有喝的，有玩的，有爱的</span>
+<a href=mailto:happy.malechi@gmail class=mr-1><i class="fas fa-envelope"></i></a>
+<a href=https://https://twitter.com/malechi20 class=mr-1><i class="fab fa-twitter"></i></a>
+<a href=https://github.com/malechiMLC class=mr-1><i class="fab fa-github"></i></a></div></div></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">上一页</span>
+<a href=/zh/posts/appium-install-opencv4nodejs/ class=block>安装Opencv4nodejs的坑</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">下一页</span>
+<a href=/zh/posts/appium-python/ class=block>VSCode+Python+Appium安装及简单示例</a></div></div><script id=utterances src=https://utteranc.es/client.js issue-term=pathname repo=ruiqima/comments theme=preferred-color-scheme crossorigin=anonymous async></script><script>((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark")&&document.getElementById('utterances').setAttribute('theme','github-dark')</script></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">相关</h2><div class=content><a href=/zh/posts/appium-python/>VSCode+Python+Appium安装及简单示例</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer class=pl-scrollbar><div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b"><p class="text-sm text-tertiary-text">&copy; 2021 Ruiqi Ma &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></div></div></footer></body></html>

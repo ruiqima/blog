@@ -5,8 +5,8 @@ role = "学生"
 bio = "有梦想，有追求，有吃的，有喝的，有玩的，有爱的"
 
 [organization]
-  name = "武汉大学"
-  url = "https://www.whu.edu.cn/"
+  name = "Dartmouth College"
+  url = "https://www.dartmouth.edu"
 
 [[social]]
   icon = "envelope"
